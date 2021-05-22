@@ -23,3 +23,22 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('pushToServer', (id) => {
+  return cy.request({
+    method: 'POST',
+    url: 'http://localhost:3000',
+    headers: {
+      'Content-Type': 'text/plain'
+    },
+    body: id.toString()
+  });
+});
+
+Cypress.Commands.add('getFromServer', () => {
+  return cy.request('http://localhost:3000');
+});
+
+Cypress.Commands.add('clearServer', () => {
+  return cy.request('DELETE', 'http://localhost:3000');
+});

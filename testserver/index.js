@@ -7,6 +7,7 @@ app.use(bodyParser.text());
 const memory = [];
 
 app.get('/', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
   res.send(JSON.stringify(memory));
 });
 

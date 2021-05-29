@@ -1,5 +1,12 @@
 /// <reference types="cypress" />
 
+/***CypressRunner
+  {
+    "id": "1.1",
+    "requires": ["1.2"] 
+  }
+*/
+
 describe('1.1', () => {
   before(() => {
     cy.clearServer();

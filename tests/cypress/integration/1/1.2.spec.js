@@ -1,5 +1,11 @@
 /// <reference types="cypress" />
 
+/***CypressRunner
+  {
+    "id": "1.2"
+  }
+*/
+
 describe('1.2', () => {
   it('1.2.1', () => {
     cy.pushToServer('1.2.1')

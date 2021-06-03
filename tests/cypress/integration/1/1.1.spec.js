@@ -3,7 +3,7 @@
 /***CypressRunner
   {
     "id": "1.1",
-    "requires": ["1.2"] 
+    "require": ["1.2"] 
   }
 */
 

@@ -1,0 +1,25 @@
+{
+  "name": "cypressrunner",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdamPacanowski/CypressRunner.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdamPacanowski/CypressRunner/issues"
+  },
+  "homepage": "https://github.com/AdamPacanowski/CypressRunner#readme",
+  "dependencies": {
+    "graph-data-structure": "^2.0.0"
+  }
+}

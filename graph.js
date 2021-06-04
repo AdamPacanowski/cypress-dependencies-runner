@@ -1,4 +1,5 @@
 const GraphDS = require('graph-data-structure');
+const { renderGraphFromSource } = require('graphviz-cli');
 
 // https://www.npmjs.com/package/graph-data-structure#querying-the-graph
 
@@ -7,7 +8,6 @@ class Graph {
     this.configs = configs;
     console.log('configs', configs);
     this.graph = this.createGraphObj();
-
   }
 
   createGraphObj() {
@@ -30,6 +30,24 @@ class Graph {
     });
 
     return obj;
+  }
+
+  async drawSVG() {
+    const graphConnections = this.graph.serialize()
+      .links.map(link => `${ link.source } -> ${ link.target }`);    
+
+    const input = `
+      digraph G {
+        ${ graphConnections.join(';\n') }
+      }
+    `;
+
+    await renderGraphFromSource({
+      input
+    }, { 
+      name: 'graphFile.svg',
+      format: 'svg' 
+    });
   }
 
   hasCycle() {

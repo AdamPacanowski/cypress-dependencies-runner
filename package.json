@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/AdamPacanowski/CypressRunner#readme",
   "dependencies": {
-    "graph-data-structure": "^2.0.0"
+    "graph-data-structure": "^2.0.0",
+    "graphviz-cli": "^1.0.0"
   }
 }

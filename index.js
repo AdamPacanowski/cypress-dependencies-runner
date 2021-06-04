@@ -28,3 +28,7 @@ const myGraph = new Graph(configs);
 
 console.log(myGraph.hasCycle());
 console.log('aaa', myGraph.getAllRouteBetweenTwoPaths('1.2', '1.6'))
+
+myGraph.drawSVG().then(() => {
+  console.log('Script done.');
+});

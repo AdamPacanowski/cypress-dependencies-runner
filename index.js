@@ -1,4 +1,5 @@
 const ConfigReader = require('./configReader');
+const Graph = require('./graph');
 
 // const f11 = readFile(path.join(cwd(), 'tests/cypress/integration/1/1.1.spec.js'));
 // const f12 = readFile(path.join(cwd(), 'tests/cypress/integration/1/1.2.spec.js'));
@@ -21,14 +22,22 @@ const ConfigReader = require('./configReader');
 // }];
 
 const configReader = new ConfigReader('**/*.spec.js');
-// const myGraph = new Graph(configs);
 
 // console.log(myGraph.hasCycle());
 // console.log('aaa', myGraph.getAllRouteBetweenTwoPaths('1.2', '1.6'))
 
-console.log(configReader.getAllFileNames());
-console.log(configReader.readAllFiles());
+const configs = configReader.readAllFiles();
+const myGraph = new Graph(configs);
 
 // myGraph.drawSVG().then(() => {
 //   console.log('Script done.');
 // });
+
+module.exports = {
+  getFullOrder() {
+    const fullOrder = myGraph.getTopologicalSort();
+    const fullOrderFileNames = configReader.resolveIds(fullOrder);
+
+    return fullOrderFileNames;
+  }
+};

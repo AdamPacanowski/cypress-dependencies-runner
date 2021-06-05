@@ -76,6 +76,10 @@ class Graph {
 
     return results;
   }
+
+  getTopologicalSort() {
+    return this.graph.topologicalSort();
+  }
 }
 
 module.exports = Graph;

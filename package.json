@@ -1,6 +1,6 @@
 {
-  "name": "cypressrunner",
-  "version": "1.0.0",
+  "name": "cypress-dependency-runner",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "directories": {
@@ -8,13 +8,12 @@
   },
   "scripts": {
     "generate-graph": "node generateGraph.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AdamPacanowski/CypressRunner.git"
   },
-  "author": "",
+  "author": "Adam Pacanowski",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/AdamPacanowski/CypressRunner/issues"

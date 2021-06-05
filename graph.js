@@ -42,10 +42,12 @@ class Graph {
       }
     `;
 
+    const fileName = process.env.CDR_SVG_FILE_NAME || 'graphFile';
+
     await renderGraphFromSource({
       input
     }, { 
-      name: 'graphFile.svg',
+      name: `${ fileName }.svg`,
       format: 'svg' 
     });
   }

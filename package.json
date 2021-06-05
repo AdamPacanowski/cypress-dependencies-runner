@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/AdamPacanowski/CypressRunner#readme",
   "dependencies": {
+    "dotenv": "10.0.0",
     "glob": "7.1.7",
     "graph-data-structure": "2.0.0",
     "graphviz-cli": "1.0.0"

@@ -7,6 +7,7 @@
     "test": "tests"
   },
   "scripts": {
+    "generate-graph": "node generateGraph.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,8 +21,8 @@
   },
   "homepage": "https://github.com/AdamPacanowski/CypressRunner#readme",
   "dependencies": {
-    "glob": "^7.1.7",
-    "graph-data-structure": "^2.0.0",
-    "graphviz-cli": "^1.0.0"
+    "glob": "7.1.7",
+    "graph-data-structure": "2.0.0",
+    "graphviz-cli": "1.0.0"
   }
 }

@@ -1,4 +1,6 @@
 node_modules
+tests
+testserver
 *.svg
 *.png
 *.mp4

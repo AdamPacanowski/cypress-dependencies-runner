@@ -1,6 +1,7 @@
 const path = require('path');
 const cypress = require('cypress');
 const CypressRunner = require('../index');
+const ResultsParser = require('../resultsParser');
 
 console.log(CypressRunner.getFullOrder());
 
@@ -43,7 +44,7 @@ const results = [
     spec: {
       name: '1/1.2.spec.js',
       relative: 'cypress/integration/1/1.2.spec.js',
-      absolute: path.normalize('C:/Software/CypressRunner/tests/cypress/integration/1/1.2.spec.js'),
+      absolute: 'C:/Software/CypressRunner/tests/cypress/integration/1/1.2.spec.js',
       specType: 'integration'
     },
     shouldUploadVideo: true
@@ -76,11 +77,13 @@ const results = [
     spec: {
       name: '1/1.1.spec.js',
       relative: 'cypress/integration/1/1.1.spec.js',
-      absolute: path.normalize('C:/Software/CypressRunner/tests/cypress/integration/1/1.1.spec.js'),
+      absolute: 'C:/Software/CypressRunner/tests/cypress/integration/1/1.1.spec.js',
       specType: 'integration'
     },
     shouldUploadVideo: true
   }
 ]
 
-console.log(results);
+const resultsParser = new ResultsParser();
+
+console.log(resultsParser.parse(results));

@@ -2,6 +2,7 @@ const path = require('path');
 const cypress = require('cypress');
 const CypressRunner = require('../index');
 const ResultsParser = require('../resultsParser');
+const generateGraph = require('../generateGraph');
 
 console.log(CypressRunner.getFullOrder());
 
@@ -85,5 +86,8 @@ const results = [
 ]
 
 const resultsParser = new ResultsParser();
+const parsedResults = resultsParser.parse(results);
 
-console.log(resultsParser.parse(results));
+generateGraph(parsedResults);
+
+

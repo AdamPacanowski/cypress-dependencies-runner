@@ -2,6 +2,16 @@
 
 This package is helping to manage dependencies between cypress tests.
 
+## Structure
+
+- `index.js` - entry file 
+- `graph.js` - class Graph
+- `generateGraph.js` - entry for `npm run generate-graph` to remove ???
+- `configReader.js` - class ConfigReader; read configuration to know which file should be runned
+
+- `tests` - example of cypress project with this library
+- `testserver` - test server to handle order tests
+
 ### How to use it?
 
 1. `npm install --save-dev cypress-dependency-runner`

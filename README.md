@@ -12,6 +12,17 @@ This package is helping to manage dependencies between cypress tests.
 - `tests` - example of cypress project with this library
 - `testserver` - test server to handle order tests
 
+## New structure (src)
+
+No scripts entries in package.json
+
+- `index.js` - This file you should import and call in your test. Should be configurable.
+- `configReader.js` - class ConfigReader; reading configuration
+- `graph.js` - class Graph; creation structure
+- `drawableGraph.js` - class DrawableGraph; svg creation
+- `utils/readFile.js` - util to read file in specific way
+- `resultsParser.js` - class ResultsParser; parsing cypress report
+
 ### How to use it?
 
 1. `npm install --save-dev cypress-dependency-runner`

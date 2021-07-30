@@ -2,10 +2,10 @@ const fs = require('fs');
 const path = require('path');
 const cypress = require('cypress');
 const CypressRunner = require('../index');
-const ResultsParser = require('../resultsParser');
-const generateGraph = require('../generateGraph');
+// const ResultsParser = require('../resultsParser');
+// const generateGraph = require('../generateGraph');
 
-console.log(CypressRunner.getFullOrder());
+// console.log(CypressRunner.getFullOrder());
 
 // cypress.run({
 //   config: {
@@ -86,8 +86,10 @@ const results = [
   }
 ];
 
-const resultsParser = new ResultsParser();
-const parsedResults = resultsParser.parse(results);
+// const resultsParser = new ResultsParser();
+// const parsedResults = resultsParser.parse(results);
 
-generateGraph(parsedResults);
+// generateGraph(parsedResults);
+
+CypressRunner(cypress);
 

@@ -1,19 +1,13 @@
-require('dotenv').config();
-const ConfigReader = require('./configReader');
-const Graph = require('./graph');
+const CypressRunner = require('./src/index');
 
-const globPattern = process.env.CDR_GLOB_PATTERN || '**/*.spec.js';
+module.exports = (cypress, config) => {
+  const myGraph = CypressRunner.run();
 
-const configReader = new ConfigReader(globPattern);
-const configs = configReader.readAllFiles();
-
-const myGraph = new Graph(configs);
-
-module.exports = {
-  getFullOrder() {
-    const fullOrder = myGraph.getTopologicalSort();
-    const fullOrderFileNames = configReader.resolveIds(fullOrder);
-
-    return fullOrderFileNames;
-  }
+  cypress.run({
+    config: {
+      testFiles: CypressRunner.getFullOrder(myGraph)
+    }
+  }).then((results) => {
+    console.log(results.runs);
+  });
 };

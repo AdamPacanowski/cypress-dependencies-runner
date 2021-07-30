@@ -1,14 +1,18 @@
 const _ = require('lodash');
 const GraphDS = require('graph-data-structure');
-const { renderGraphFromSource } = require('graphviz-cli');
-
 // https://www.npmjs.com/package/graph-data-structure#querying-the-graph
 
 class Graph {
-  constructor(configs, results) {
+  constructor(configs) {
     this.configs = configs;
-    this.results = results;
     this.graph = this.createGraphObj();
+    this.results = null;
+    this.colors = null;
+  }
+
+  setResults(results) {
+    this.results = results;
+    this.colors = this.getColors();
   }
 
   createGraphObj() {
@@ -47,26 +51,6 @@ class Graph {
 
       return obj;
     }, {});
-  }
-
-  async drawSVG() {
-    const graphConnections = this.graph.serialize()
-      .links.map(link => `${ link.source } -> ${ link.target }`);    
-
-    const input = `
-      digraph G {
-        ${ graphConnections.join(';\n') }
-      }
-    `;
-
-    const fileName = process.env.CDR_SVG_FILE_NAME || 'graphFile';
-
-    await renderGraphFromSource({
-      input
-    }, { 
-      name: `${ fileName }.svg`,
-      format: 'svg' 
-    });
   }
 
   hasCycle() {

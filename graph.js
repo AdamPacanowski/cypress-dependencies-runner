@@ -1,12 +1,13 @@
+const _ = require('lodash');
 const GraphDS = require('graph-data-structure');
 const { renderGraphFromSource } = require('graphviz-cli');
 
 // https://www.npmjs.com/package/graph-data-structure#querying-the-graph
 
 class Graph {
-  constructor(configs) {
+  constructor(configs, results) {
     this.configs = configs;
-    console.log('configs', configs);
+    this.results = results;
     this.graph = this.createGraphObj();
   }
 
@@ -30,6 +31,22 @@ class Graph {
     });
 
     return obj;
+  }
+
+  getColors() {
+    return this.configs.reduce((obj, config) => {
+      const adequateResult = _.find(this.results, {
+        specAbsolutePath: config.specAbsolutePath
+      });
+      console.log('-->', this.results, config);
+      if (adequateResult.failures) {
+        obj[config.id] = 'red';
+      } else {
+        obj[config.id] = 'green';
+      }
+
+      return obj;
+    }, {});
   }
 
   async drawSVG() {

@@ -6,9 +6,13 @@ const globPattern = process.env.CDR_GLOB_PATTERN || '**/*.spec.js';
 
 const configReader = new ConfigReader(globPattern);
 
-const configs = configReader.readAllFiles();
-const myGraph = new Graph(configs);
+module.exports = (results) => {
+  const configs = configReader.readAllFilesWithMetadata();
+  const myGraph = new Graph(configs, results);
 
-myGraph.drawSVG().then(() => {
-  console.log('Script done.');
-});
+  console.log(myGraph.getColors());
+
+  // myGraph.drawSVG().then(() => {
+  //   console.log('Script done.');
+  // });
+}

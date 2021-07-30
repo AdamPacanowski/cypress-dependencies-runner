@@ -33,6 +33,17 @@ class ConfigReader {
     return allConfigs;
   }
 
+  readAllFilesWithMetadata() {
+    const allConfigs = this.readAllFiles();
+    const fullPaths = this.resolveIds(allConfigs.map(a => a.id));
+
+    for(let i = 0; i < allConfigs.length; i++) {
+      allConfigs[i].specAbsolutePath = fullPaths[i];
+    }
+
+    return allConfigs;
+  }
+
   resolveIds(ids) {
     if (!Object.keys(this.idsMap).length) {
       this.readAllFiles();

@@ -1,5 +1,5 @@
 const cypress = require('cypress');
-const CypressRunner = require('../index');
+const CypressRunner = require('../built/main');
 
 CypressRunner(cypress);
 

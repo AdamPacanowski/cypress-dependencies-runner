@@ -1,10 +1,9 @@
-const fs = require('fs');
+import { readFileSync } from 'fs';
 
-
-module.exports = (filePath) => {
+module.exports = function (filePath: string) {
   const regex = /\*\*\*CypressRunner.*(\{.*\}).*\*/gsm;
   
-  const fileContent = fs.readFileSync(filePath)
+  const fileContent = readFileSync(filePath)
     .toString();
 
   const match = regex.exec(fileContent);

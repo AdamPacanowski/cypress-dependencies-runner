@@ -1,4 +1,4 @@
-const CypressRunner = require('./src/index');
+const CypressRunner = require('./index');
 
 const results = [  
   {

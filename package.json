@@ -2,7 +2,6 @@
   "name": "cypress-dependencies-runner",
   "version": "0.1.0",
   "description": "",
-  "main": "index.js",
   "directories": {
     "test": "tests"
   },
@@ -24,9 +23,10 @@
     "glob": "7.1.7",
     "graph-data-structure": "2.0.0",
     "graphviz-cli": "1.0.0",
-    "lodash": "4.17.21"    
+    "lodash": "4.17.21"
   },
   "devDependencies": {
+    "@types/node": "^16.4.7",
     "typescript": "4.3.5"
   }
 }

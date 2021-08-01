@@ -1,11 +1,14 @@
-const { renderGraphFromSource } = require('graphviz-cli');
+import Graph from './graph';
+import { renderGraphFromSource } from 'graphviz-cli'; 
 
 class GraphPainter {
-  constructor(myGraph) {
+  private myGraph: Graph;
+
+  constructor(myGraph: Graph) {
     this.myGraph = myGraph;
   }
 
-  async drawSVG() {
+  async drawSVG(): Promise<string> {
     console.log(this.myGraph.colors);
 
     const serializedGraph = this.myGraph.graph.serialize();
@@ -30,14 +33,13 @@ class GraphPainter {
     console.log(input);
     const fileName = process.env.CDR_SVG_FILE_NAME || 'graphFile';
 
-    await renderGraphFromSource({
+    return await renderGraphFromSource({
       input
     }, { 
       name: `${ fileName }.svg`,
       format: 'svg' 
     });
   }
-
 }
 
-module.exports = GraphPainter;
+export default GraphPainter;

@@ -1,28 +1,28 @@
 require('dotenv').config();
-const ConfigReader = require('./configReader');
-const Graph = require('./graph');
-const GraphPainter = require('./graphPainter');
-const ResultsParser = require('./resultsParser');
+import ConfigReader from "./configReader";
+import Graph from './graph';
+import GraphPainter from './graphPainter';
+import ResultsParser from "./resultsParser";
 
 const globPattern = process.env.CDR_GLOB_PATTERN || '**/*.spec.js';
 
 let configReader = new ConfigReader(globPattern);
 
-module.exports = {
-  run() { // change to class and move it to constructor
+export default {
+  run(): Graph { // TODO change to class and move it to constructor
     const configs = configReader.readAllFilesWithMetadata();
     console.log('configs', configs);
     const myGraph = new Graph(configs);
 
     return myGraph;
   },
-  getFullOrder(myGraph) {
+  getFullOrder(myGraph: Graph): string[] {
     const fullOrder = myGraph.getTopologicalSort();
     const fullOrderFileNames = configReader.resolveIds(fullOrder);
   
     return fullOrderFileNames;
   },
-  draw(runsResultsRaw, myGraph) {
+  draw(runsResultsRaw: CypressCommandLine.RunResult[], myGraph: Graph): void {
     console.log('Drawing...');
 
     const resultsParser = new ResultsParser();

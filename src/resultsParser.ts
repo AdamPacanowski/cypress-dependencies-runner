@@ -1,9 +1,20 @@
-const path = require('path');
+import path from 'path';
+
+export interface IResult {
+  failures: number;
+  passes: number;
+  pending: number;
+  tests: number;
+  skipped: number;
+  specAbsolutePath: string;
+};
+
+type CypressRunResultsRuns = CypressCommandLine.CypressRunResult['runs'];
 
 class ResultsParser {
   constructor() {}
 
-  parse(results) {
+  parse(results: CypressRunResultsRuns): IResult[] {
     const parsedResult = results.map(result => {
       return {
         specAbsolutePath: path.normalize(result.spec.absolute),
@@ -19,4 +30,4 @@ class ResultsParser {
   }
 }
 
-module.exports = ResultsParser;
+export default ResultsParser;

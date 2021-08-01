@@ -1,4 +1,5 @@
-const CypressRunner = require('./index');
+import type * as cypressTyping from 'cypress';
+import CypressRunner from './index';
 
 const results = [  
   {
@@ -69,19 +70,19 @@ const results = [
   }
 ];
 
-
-module.exports = (cypress, config) => {
+export default (cypress: typeof cypressTyping) => {
   const myGraph = CypressRunner.run();
 
   // CypressRunner.draw(results, myGraph);
-
   cypress.run({
     config: {
       testFiles: CypressRunner.getFullOrder(myGraph)
     }
   }).then((results) => {
-    console.log(results.runs);
+    const correctResults = results as CypressCommandLine.CypressRunResult;
 
-    CypressRunner.draw(results.runs, myGraph);
+    console.log(correctResults.runs);
+
+    CypressRunner.draw(correctResults.runs, myGraph);
   });
 };

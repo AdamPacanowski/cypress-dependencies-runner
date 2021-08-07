@@ -4,24 +4,17 @@ This package is helping to manage dependencies between cypress tests.
 
 ## Structure
 
-- `index.js` - entry file 
-- `graph.js` - class Graph
-- `generateGraph.js` - entry for `npm run generate-graph` to remove ???
-- `configReader.js` - class ConfigReader; read configuration to know which file should be runned
-
 - `tests` - example of cypress project with this library
 - `testserver` - test server to handle order tests
 
-## New structure (src)
-
-No scripts entries in package.json
+### `src`
 
 - `index.js` - This file you should import and call in your test. Should be configurable.
 - `configReader.js` - class ConfigReader; reading configuration
 - `graph.js` - class Graph; creation structure
 - `drawableGraph.js` - class DrawableGraph; svg creation
-- `utils/readFile.js` - util to read file in specific way
 - `resultsParser.js` - class ResultsParser; parsing cypress report
+- `utils/readFile.js` - util to read file in specific way
 
 ### How to use it?
 

@@ -25,13 +25,14 @@ class ConfigReader {
     });
   }
 
-  readAllFiles(): IDescribeConfig[] {
+  readAllFiles(cwdPath?: string): IDescribeConfig[] {
     this.idsMap = {};
 
+    const realCwdPath = cwdPath || cwd();
     const fileNames = this.getAllFileNames();
 
     const allConfigs = fileNames.map(fileName => {
-      const fullPath = path.join(cwd(), fileName);
+      const fullPath = path.join(realCwdPath, fileName);
       const config = readFile(fullPath);
 
       this.idsMap[config.id] = fullPath;
@@ -42,8 +43,8 @@ class ConfigReader {
     return allConfigs;
   }
 
-  readAllFilesWithMetadata(): IDescribeConfigWithMetaData[] {
-    const allConfigs = this.readAllFiles();
+  readAllFilesWithMetadata(cwdPath?: string): IDescribeConfigWithMetaData[] {
+    const allConfigs = this.readAllFiles(cwdPath);
     const fullPaths = this.resolveIds(allConfigs.map(a => a.id));
 
     const extendedAllConfigs: IDescribeConfigWithMetaData[] = [];

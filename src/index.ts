@@ -9,8 +9,8 @@ const globPattern = process.env.CDR_GLOB_PATTERN || '**/*.spec.js';
 let configReader = new ConfigReader(globPattern);
 
 export default {
-  run(): Graph { // TODO change to class and move it to constructor
-    const configs = configReader.readAllFilesWithMetadata();
+  run(cwdPath?: string): Graph { // TODO change to class and move it to constructor
+    const configs = configReader.readAllFilesWithMetadata(cwdPath);
     console.log('configs', configs);
     const myGraph = new Graph(configs);
 

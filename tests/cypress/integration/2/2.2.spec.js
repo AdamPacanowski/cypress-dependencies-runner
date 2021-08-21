@@ -9,8 +9,11 @@
 
 describe('2.2', () => {
   it('2.2.1', () => {
-    cy.pushToServer('2.2.1').then(response => {
-      expect(response).property('body').to.contains('2.2.1');
+    cy.pushToServer('2.2.1').then(() => {
+      cy.getFromServer().then((response) => {
+        expect(response).property('body').to.contains('2.4.1');
+        expect(response).property('body').to.contains('2.2.1');
+      });
     });
   });
 });

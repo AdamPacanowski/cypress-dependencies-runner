@@ -1,3 +1,4 @@
+import consoleUtils from './consoleUtils';
 import Graph from './graph';
 import { renderGraphFromSource } from 'graphviz-cli'; 
 
@@ -9,17 +10,17 @@ class GraphPainter {
   }
 
   async drawSVG(): Promise<string> {
-    console.log(this.myGraph.colors);
-
     const serializedGraph = this.myGraph.graph.serialize();
     const graphConnections = serializedGraph
       .links.map(link => `${ link.source } -> ${ link.target }`);    
     
     const nodes = serializedGraph
-      .nodes.map(node => `${ node.id } [fillcolor=${ this.myGraph.colors[node.id] }]`);
-
-    console.log(serializedGraph);
-    console.log(this.myGraph.colors);
+      .nodes.map(node => `${ node.id } [label=<
+        <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="-6">
+            <TR><TD>${ node.id }</TD></TR>
+            <TR><TD><FONT POINT-SIZE="8">(${ this.myGraph.colors[node.id].text })</FONT></TD></TR>
+        </TABLE>
+        >][fillcolor=${ this.myGraph.colors[node.id].color }]`);
 
     const input = `
       digraph G {
@@ -30,7 +31,9 @@ class GraphPainter {
         ${ graphConnections.join(';\n') }
       }
     `;
-    console.log(input);
+
+    consoleUtils.log(input);
+
     const fileName = process.env.CDR_SVG_FILE_NAME || 'graphFile';
 
     return await renderGraphFromSource({

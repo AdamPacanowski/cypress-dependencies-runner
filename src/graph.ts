@@ -31,8 +31,15 @@ function isIGraphDS(obj: any): obj is IGraphDS {
   return interfaceProps.every(interfaceProp => obj[interfaceProp]);
 };
 
+type IColorsEntryColor = 'green' | 'red';
+
+interface IColorsEntry {
+  color: IColorsEntryColor,
+  text: string
+}
+
 export interface IColors {
-  [index: string]: 'green' | 'red'
+  [index: string]: IColorsEntry
 };
 
 class Graph {
@@ -84,12 +91,20 @@ class Graph {
       const adequateResult = _.find(this.results, {
         specAbsolutePath: config.specAbsolutePath
       });
-      console.log('-->', this.results, config);
+
+      const text = `${ adequateResult.passes }/${ adequateResult.tests }`;
+      let color: IColorsEntryColor;
+
       if (adequateResult.failures) {
-        obj[config.id] = 'red';
+        color = 'red';
       } else {
-        obj[config.id] = 'green';
+        color = 'green';
       }
+
+      obj[config.id] = {
+        color,
+        text
+      };
 
       return obj;
     }, {} as IColors);

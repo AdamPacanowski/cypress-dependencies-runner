@@ -1,18 +1,18 @@
-import { cwd } from 'process';
-// import type * as cypressTyping from 'cypress';
-import CypressRunner from './index';
+// import { cwd } from 'process';
+// // import type * as cypressTyping from 'cypress';
+// import CypressRunner from './index';
 
-const cwdPath = cwd();
+// const cwdPath = cwd();
 
-console.log('cwdPath', cwdPath);
+// console.log('cwdPath', cwdPath);
 
-// const cypressPath = '../tests/node_modules/cypress/index.js';
+// // const cypressPath = '../tests/node_modules/cypress/index.js';
 
-// import(cypressPath)
-//   .then((module: typeof cypressTyping) => {
-//     module
-//   });
+// // import(cypressPath)
+// //   .then((module: typeof cypressTyping) => {
+// //     module
+// //   });
 
-const graph = CypressRunner.run(cwdPath);
+// const graph = CypressRunner.run(cwdPath);
 
-console.log('fullOrder', CypressRunner.getFullOrder(graph));
+// console.log('fullOrder', CypressRunner.getFullOrder(graph));

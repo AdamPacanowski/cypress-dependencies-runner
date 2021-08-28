@@ -1,4 +1,5 @@
 require('dotenv').config();
+import consoleUtils from './consoleUtils';
 import ConfigReader from "./configReader";
 import Graph from './graph';
 import GraphPainter from './graphPainter';
@@ -11,7 +12,7 @@ let configReader = new ConfigReader(globPattern);
 export default {
   run(cwdPath?: string): Graph { // TODO change to class and move it to constructor
     const configs = configReader.readAllFilesWithMetadata(cwdPath);
-    console.log('configs', configs);
+
     const myGraph = new Graph(configs);
 
     return myGraph;
@@ -23,7 +24,7 @@ export default {
     return fullOrderFileNames;
   },
   draw(runsResultsRaw: CypressCommandLine.RunResult[], myGraph: Graph): void {
-    console.log('Drawing...');
+    consoleUtils.log('Drawing...');
 
     const resultsParser = new ResultsParser();
     const runsResults = resultsParser.parse(runsResultsRaw);
@@ -33,7 +34,7 @@ export default {
     const graphPainter = new GraphPainter(myGraph);
 
     graphPainter.drawSVG().then(() => {
-      console.log('SVG file created!');
+      consoleUtils.log('SVG file created!');
     })
   }
 };

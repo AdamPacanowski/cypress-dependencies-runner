@@ -48,6 +48,10 @@ This package is helping to manage dependencies between cypress tests.
     */
     ```
 
+## Useful links
+
+https://dreampuf.github.io/
+
 ## Changelog
 
 ### 0.1.0

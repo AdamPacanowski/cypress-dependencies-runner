@@ -4,6 +4,7 @@
     "allowJs": true,
     "esModuleInterop": true,
     "moduleResolution": "node",
+    "skipLibCheck": true
   },
   "include": ["./src/**/*"]
 }

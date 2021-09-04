@@ -1,8 +1,11 @@
 import { expect } from '@jest/globals';
-import ConfigReader from './configReader';
+import { cwd } from 'process';
+
+import ConfigReader, { IDescribeConfigWithMetaData } from './configReader';
 import { IDescribeConfig } from './readFile';
 
 const dirPath = 'src/jestFixtures/configReader/';
+const dirPathBackSlashed = dirPath.split('/').join('\\');
 const globPattern = `${ dirPath }**/*.spec.js`;
 let configReader: ConfigReader;
 
@@ -18,7 +21,7 @@ describe('configReader', () => {
       `${ dirPath }someDir/4.spec.js`
     ];
     const notExpectedResult = [
-      `${ dirPath }/3.nospec.js`,
+      `${ dirPath }/3.nospec.js`
     ];
     
     
@@ -59,5 +62,54 @@ describe('configReader', () => {
     });
 
     expect(configs.length).toEqual(3);
+  });
+
+  it('tests readAllFilesWithMetadata', () => {
+    const expectedResult: IDescribeConfigWithMetaData[] = [
+      { 
+        id: '1',
+        specAbsolutePath: `${ cwd() }\\${ dirPathBackSlashed }1.spec.js`
+      },
+      { 
+        id: '2',
+        specAbsolutePath: `${ cwd() }\\${ dirPathBackSlashed }2.spec.js`
+      },
+      { 
+        id: '4',
+        specAbsolutePath: `${ cwd() }\\${ dirPathBackSlashed }someDir\\4.spec.js`
+      }
+    ];
+    const notExpectedResult: IDescribeConfigWithMetaData[] = [
+      { 
+        id: '3',
+        specAbsolutePath: `${ cwd() }\\${ dirPathBackSlashed }/3.nospec.js`
+      }
+    ];
+
+
+    const configsWithMetadata = configReader.readAllFilesWithMetadata();
+
+
+    expectedResult.forEach(idcwmObject => {
+      expect(configsWithMetadata).toContainEqual(idcwmObject);
+    });
+    notExpectedResult.forEach(idcmwObject => {
+      expect(configsWithMetadata).not.toContainEqual(idcmwObject);
+    });
+
+    expect(configsWithMetadata.length).toEqual(3);
+  });
+
+  it('tests resolveIds (not all entries, custom order)', () => {
+    const expectedResult = [
+      `${ cwd() }\\${ dirPathBackSlashed }someDir\\4.spec.js`,
+      `${ cwd() }\\${ dirPathBackSlashed }1.spec.js`
+    ];
+
+
+    const paths = configReader.resolveIds(['4', '1']);
+
+
+    expect(paths).toEqual(expectedResult);
   });
 });

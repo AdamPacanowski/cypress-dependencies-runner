@@ -1,4 +1,5 @@
 import type * as cypressTyping from 'cypress';
+import fs from 'fs';
 import CypressRunner from './index';
 
 export default (cypress: typeof cypressTyping) => {

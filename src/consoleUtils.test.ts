@@ -1,7 +1,6 @@
 import { expect } from '@jest/globals';
 import consoleUtils from './consoleUtils';
 
-
 describe('consoleUtils', () => {
   it('tests log function', () => {
     const consoleLog = jest.spyOn(console, 'log')

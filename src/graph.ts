@@ -18,7 +18,9 @@ interface IGraphDSSerialized {
 export interface IGraphDS {
   addEdge: (u: string, v: string) => void;
   addNode: (node: string) => void;
+  adjacent: (node: string) => string[];
   hasCycle: () => boolean;
+  nodes: () => string[];
   removeNode: (node: string) => void;
   serialize: () => IGraphDSSerialized;
   shortestPath: (source: string, destination: string) => string[];
@@ -49,6 +51,7 @@ class Graph {
   private results: IResult[];
 
   constructor(configs: IDescribeConfigWithMetaData[]) {
+    console.log('XXX => contructor', configs)
     this.configs = configs;
     this.graph = this.createGraphObj();
     this.results = null;
@@ -56,11 +59,13 @@ class Graph {
   }
 
   setResults(results: IResult[]) {
+    console.log('XXX => setResults', results);
     this.results = results;
     this.colors = this.getColors();
   }
 
   createGraphObj(): IGraphDS {
+    console.log('XXX => createGraphObj');
     const obj = GraphDS();
 
     if (!isIGraphDS(obj)) {
@@ -87,6 +92,7 @@ class Graph {
   }
 
   getColors(): IColors {
+    console.log('XXX => getColors')
     return this.configs.reduce((obj, config) => {
       const adequateResult = _.find(this.results, {
         specAbsolutePath: config.specAbsolutePath
@@ -111,11 +117,13 @@ class Graph {
   }
 
   hasCycle(): boolean {
+    console.log('XXX => hasCycle');
     return this.graph.hasCycle();
   }
 
   // TODO Check typing
   getAllRouteBetweenTwoNodes(sourceNode: string, destinationNode: string): string[] {
+    console.log('XXX => getAllRouteBetweenTwoNodes', sourceNode, destinationNode);
     const tempGraph = this.createGraphObj();
     const results: string[] = [];
 
@@ -139,6 +147,7 @@ class Graph {
   }
 
   getTopologicalSort(): string[] {
+    console.log('XXX => getTopologicalSort')
     return this.graph.topologicalSort();
   }
 }

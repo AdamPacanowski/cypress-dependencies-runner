@@ -1,7 +1,6 @@
 import { expect } from '@jest/globals';
 
 import Graph from './graph'
-import { IDescribeConfigWithMetaData } from './configReader';
 
 import { configs, results } from './jestFixtures/graph/basicGraphExampleData';
 

@@ -36,12 +36,17 @@ class GraphPainter {
 
     const fileName = process.env.CDR_SVG_FILE_NAME || 'graphFile';
 
-    return await renderGraphFromSource({
-      input
-    }, { 
-      name: `${ fileName }.svg`,
-      format: 'svg' 
-    });
+    try {
+      return await renderGraphFromSource({
+        input
+      }, { 
+        name: `${ fileName }.svg`,
+        format: 'svg' 
+      });
+    }
+    catch(e) {
+      throw e;
+    }
   }
 }
 

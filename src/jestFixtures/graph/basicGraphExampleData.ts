@@ -115,9 +115,9 @@ export const results = [
   {
     specAbsolutePath: 'C:\\Software\\CypressRunner\\tests\\cypress\\integration\\1\\1.2.spec.js',
     tests: 2,
-    passes: 2,
+    passes: 1,
     pending: 0,
     skipped: 0,
-    failures: 0
+    failures: 1
   }
 ];

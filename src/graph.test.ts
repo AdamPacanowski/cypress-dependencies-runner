@@ -3,7 +3,7 @@ import { expect } from '@jest/globals';
 import Graph from './graph'
 import { IDescribeConfigWithMetaData } from './configReader';
 
-import { configs } from './jestFixtures/graph/basicGraphExampleData';
+import { configs, results } from './jestFixtures/graph/basicGraphExampleData';
 
 describe('graph', () => {
   it('tests object creation (basic data)', () => {
@@ -51,4 +51,26 @@ describe('graph', () => {
     expect(myGraph.hasCycle()).toBeFalsy();
   });
   
+  it('tests getColors method (basic data)', () => {
+    const myGraph = new Graph(configs);
+
+    expect(myGraph.colors).toEqual(null);
+
+    myGraph.setResults(results);
+
+    expect(myGraph.colors['1.2']).toEqual({
+      color: 'red',
+      text: '1/2'
+    });
+    for (const nodeId in myGraph.colors) {
+      if (nodeId === '1.2') {
+        continue;
+      }
+
+      const value = myGraph.colors[nodeId];
+
+      expect(value.color).toEqual('green');
+      expect(value.text).toBeTruthy();
+    }
+  });
 });

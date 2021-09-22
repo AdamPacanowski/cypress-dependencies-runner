@@ -48,11 +48,15 @@ This package is helping to manage dependencies between cypress tests.
     */
     ```
 
-## Useful links
-
-https://dreampuf.github.io/
-
 ## Changelog
+
+### 0.3.1
+
+- Add simple readFile test
+
+### 0.3.0
+
+- First public version
 
 ### 0.1.0
 

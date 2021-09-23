@@ -50,6 +50,11 @@ This package is helping to manage dependencies between cypress tests.
 
 ## Changelog
 
+### 0.4.0
+
+- Change default tags
+- Now you can pass `env` when you are starting tests
+
 ### 0.3.1
 
 - Add simple readFile test

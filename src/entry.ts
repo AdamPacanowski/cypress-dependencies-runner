@@ -2,14 +2,27 @@ import type * as cypressTyping from 'cypress';
 import fs from 'fs';
 import CypressRunner from './index';
 
-export default (cypress: typeof cypressTyping) => {
+interface ICypressRunOptions {
+  config: object;
+  env?: object;
+}
+
+export default (cypress: typeof cypressTyping, env: object) => {
   const myGraph = CypressRunner.run();
 
-  cypress.run({
+  const options: ICypressRunOptions = {
     config: {
       testFiles: CypressRunner.getFullOrder(myGraph)
     }
-  }).then((results) => {
+  };
+
+  if (env !== undefined) {
+    options.env = env;
+  }
+
+  console.log('cypress options:', options);
+
+  cypress.run(options).then((results) => {
     const correctResults = results as CypressCommandLine.CypressRunResult;
 
     CypressRunner.draw(correctResults.runs, myGraph);

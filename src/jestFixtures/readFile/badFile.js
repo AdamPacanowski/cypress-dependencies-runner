@@ -3,7 +3,7 @@
     "id": "1.3",
     "require": ["1.1"] 
   }
-*/
+***/
 
 import envManager from '../../support/envManager';
 import {

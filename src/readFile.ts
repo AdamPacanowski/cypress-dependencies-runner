@@ -27,7 +27,7 @@ function isIDescribeConfig(json: any): json is IDescribeConfig {
 }
 
 export default function (filePath: string): IDescribeConfig {
-  const regex = /\*\*\*CypressRunner.*(\{.*\}).*\*/gsm;
+  const regex = /\*\*\*CypressRunner.*(\{.*\}).*\*\*\*/gsm;
   
   const fileContent = readFileSync(filePath).toString();
 

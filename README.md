@@ -45,7 +45,7 @@ This package is helping to manage dependencies between cypress tests.
         "id": "1.1",
         "require": ["1.2"] 
       }
-    */
+    ***/
     ```
 
 ## Changelog

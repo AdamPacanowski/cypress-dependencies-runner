@@ -22,19 +22,7 @@ This package is helping to manage dependencies between cypress tests.
 2. Go to your file (or create it) where you start test programmatically and inject `getFullOrder` method.
 
     e.g.
-    ```
-    const cypress = require('cypress');
-    const CypressRunner = require('cypress-dependency-runner);
-
-    cypress.run({
-      config: {
-        testFiles: CypressRunner.getFullOrder()
-      }
-    })
-    .then((results) => {
-      // ...
-    })
-    ```
+    ```TBD```
 
 3. Define in your spec files special comments which tell about dependecies.
 
@@ -49,6 +37,12 @@ This package is helping to manage dependencies between cypress tests.
     ```
 
 ## Changelog
+
+### 0.5.0
+
+- Now you will get custom error when problem with parsing tags
+- Fixed problem with spaces in id's
+- Now you can set custom font in output image (`process.env.CDR_SVG_FONTNAME`)
 
 ### 0.4.0
 

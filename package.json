@@ -1,6 +1,6 @@
 {
   "name": "cypress-dependencies-runner",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "",
   "directories": {
     "test": "tests"
@@ -22,13 +22,13 @@
   },
   "homepage": "https://github.com/AdamPacanowski/CypressRunner#readme",
   "dependencies": {
-    "chalk": "^4.1.2",
+    "chalk": "4.1.2",
     "dotenv": "10.0.0",
     "glob": "7.1.7",
     "graph-data-structure": "2.0.0",
     "graphviz-cli": "1.0.0",
     "lodash": "4.17.21",
-    "yargs": "^17.1.0"
+    "yargs": "17.2.0"
   },
   "devDependencies": {
     "@types/glob": "^7.1.4",

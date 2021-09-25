@@ -1,5 +1,16 @@
 import { readFileSync } from 'fs';
 
+export class ReadFileJSONParseError extends Error {
+  filePath: string;
+
+  constructor(filePath: string) {
+    super(`Error when parsing ${ filePath }`);
+
+    this.name = 'ReadFileJSONParseError';
+    this.filePath = filePath;
+  }
+}
+
 export interface IDescribeConfig {
   id: string;
   require?: string[];
@@ -33,7 +44,14 @@ export default function (filePath: string): IDescribeConfig {
 
   const match = regex.exec(fileContent);
 
-  const json = JSON.parse(match[1].trim());
+  let json;
+
+  try {
+    json = JSON.parse(match[1].trim());
+  }
+  catch (e) {
+    throw new ReadFileJSONParseError(filePath);
+  }
 
   if (!isIDescribeConfig(json)) {
     throw new Error(`Wrong describe config for ${ filePath }`);

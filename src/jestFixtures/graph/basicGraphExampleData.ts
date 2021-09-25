@@ -122,59 +122,59 @@ export const results = [
   }
 ];
 
-export const graphDescription = `{"input":"                                                             
+export const graphDescription = `                                                          
 digraph G {                                                      
   {                                                              
     node [style=filled]                                          
-    1.1 [label=<                                                 
+    "1.1" [label=<                                                 
   <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="-6">             
       <TR><TD>1.1</TD></TR>                                      
       <TR><TD><FONT POINT-SIZE="8">(2/2)</FONT></TD></TR>        
   </TABLE>                                                       
   >][fillcolor=green]                                            
-1.2 [label=<                                                           
+"1.2" [label=<                                                           
   <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="-6">             
       <TR><TD>1.2</TD></TR>                                      
       <TR><TD><FONT POINT-SIZE="8">(1/2)</FONT></TD></TR>        
   </TABLE>                                                       
   >][fillcolor=red]                                              
-2.1 [label=<                                                           
+"2.1" [label=<                                                           
   <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="-6">             
       <TR><TD>2.1</TD></TR>                                      
       <TR><TD><FONT POINT-SIZE="8">(1/1)</FONT></TD></TR>        
   </TABLE>                                                       
   >][fillcolor=green]                                            
-2.2 [label=<                                                           
+"2.2" [label=<                                                           
   <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="-6">             
       <TR><TD>2.2</TD></TR>                                      
       <TR><TD><FONT POINT-SIZE="8">(1/1)</FONT></TD></TR>        
   </TABLE>                                                       
   >][fillcolor=green]                                            
-3.3 [label=<                                                           
+"3.3" [label=<                                                           
   <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="-6">             
       <TR><TD>3.3</TD></TR>                                      
       <TR><TD><FONT POINT-SIZE="8">(1/1)</FONT></TD></TR>        
   </TABLE>                                                       
   >][fillcolor=green]                                            
-2.3 [label=<                                                           
+"2.3" [label=<                                                           
   <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="-6">             
       <TR><TD>2.3</TD></TR>                                      
       <TR><TD><FONT POINT-SIZE="8">(1/1)</FONT></TD></TR>        
   </TABLE>                                                       
   >][fillcolor=green]                                            
-2.4 [label=<                                                           
+"2.4" [label=<                                                           
   <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="-6">             
       <TR><TD>2.4</TD></TR>                                      
       <TR><TD><FONT POINT-SIZE="8">(1/1)</FONT></TD></TR>        
   </TABLE>                                                       
   >][fillcolor=green]                                            
-3.1 [label=<                                                           
+"3.1" [label=<                                                           
   <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="-6">             
       <TR><TD>3.1</TD></TR>                                      
       <TR><TD><FONT POINT-SIZE="8">(1/1)</FONT></TD></TR>        
   </TABLE>                                                       
   >][fillcolor=green]                                            
-3.2 [label=<                                                           
+"3.2" [label=<                                                           
   <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="-6">             
       <TR><TD>3.2</TD></TR>                                      
       <TR><TD><FONT POINT-SIZE="8">(1/1)</FONT></TD></TR>        
@@ -191,5 +191,4 @@ digraph G {
 2.4 -> 3.1;                                                            
 3.1 -> 3.2;                                                            
 3.2 -> 3.3                                                             
-}                                                                
-"}`
+}`;

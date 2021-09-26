@@ -16,3 +16,6 @@
 // const graph = CypressRunner.run(cwdPath);
 
 // console.log('fullOrder', CypressRunner.getFullOrder(graph));
+#!/usr/bin/env node
+
+require('./index.js');

@@ -12,7 +12,7 @@ class GraphPainter {
   public generateMarkup() {
     const serializedGraph = this.myGraph.graph.serialize();
     const graphConnections = serializedGraph
-      .links.map(link => `${ link.source } -> ${ link.target }`);    
+      .links.map(link => `"${ link.source }" -> "${ link.target }"`);    
     
     const nodes = serializedGraph
       .nodes.map(node => `"${ node.id }" [label=<
@@ -37,7 +37,7 @@ class GraphPainter {
         ${ graphConnections.join(';\n') }
       }
     `;
-
+      console.log(input)
     return input;
   }
 

@@ -17,6 +17,15 @@ export default {
 
     return myGraph;
   },
+  getAllIds(cwdPath: string) {
+    const globPattern = process.env.CDR_GLOB_PATTERN || '**/*.spec.js';
+
+    const configReader = new ConfigReader(globPattern);
+    
+    const results = configReader.getAllIds(cwdPath);
+
+    return results;
+  },
   getFullOrder(myGraph: Graph): string[] {
     const fullOrder = myGraph.getTopologicalSort();
     const fullOrderFileNames = configReader.resolveIds(fullOrder);

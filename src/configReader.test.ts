@@ -1,4 +1,5 @@
 import { expect } from '@jest/globals';
+import path from 'path';
 import { cwd } from 'process';
 
 import ConfigReader, { IDescribeConfigWithMetaData } from './configReader';
@@ -28,15 +29,38 @@ describe('configReader', () => {
     const fileNames = configReader.getAllFileNames();
 
 
-    expectedResult.forEach(fileName => {
-      expect(fileNames).toContain(fileName);
+    verify({
+      expectedResult,
+      notExpectedResult,
+      result: fileNames,
+      expectedLength: 3
     });
+  });
 
-    notExpectedResult.forEach(fileName => {
-      expect(fileNames).not.toContain(fileName);
+  it('tests getAllFileNames method (with cwdPath and custom globPattern))', () => {
+    configReader = new ConfigReader('**/*.spec.js');
+
+    const expectedResult = [
+      '4.spec.js'
+    ];
+    const notExpectedResult = [
+      '1.spec.js',
+      '2.spec.js',
+      '3.nospec.js'
+    ];
+
+
+    const fileNames = configReader.getAllFileNames(
+      `${ cwd() }\\${ dirPathBackSlashed }someDir`
+    );
+
+
+    verify({
+      expectedResult,
+      notExpectedResult,
+      result: fileNames,
+      expectedLength: 1
     });
-
-    expect(fileNames.length).toEqual(3);
   });
 
   it('tests readAllFiles method', () => {
@@ -53,15 +77,12 @@ describe('configReader', () => {
     const configs = configReader.readAllFiles();
 
 
-    expectedResult.forEach(idcObject => {
-      expect(configs).toContainEqual(idcObject);
+    verify({
+      expectedResult,
+      notExpectedResult,
+      result: configs,
+      expectedLength: 3
     });
-
-    notExpectedResult.forEach(idcObject => {
-      expect(configs).not.toContainEqual(idcObject);
-    });
-
-    expect(configs.length).toEqual(3);
   });
 
   it('tests readAllFilesWithMetadata', () => {
@@ -90,14 +111,12 @@ describe('configReader', () => {
     const configsWithMetadata = configReader.readAllFilesWithMetadata();
 
 
-    expectedResult.forEach(idcwmObject => {
-      expect(configsWithMetadata).toContainEqual(idcwmObject);
+    verify({
+      expectedResult,
+      notExpectedResult,
+      result: configsWithMetadata,
+      expectedLength: 3
     });
-    notExpectedResult.forEach(idcmwObject => {
-      expect(configsWithMetadata).not.toContainEqual(idcmwObject);
-    });
-
-    expect(configsWithMetadata.length).toEqual(3);
   });
 
   it('tests resolveIds (not all entries, custom order)', () => {
@@ -112,4 +131,51 @@ describe('configReader', () => {
 
     expect(paths).toEqual(expectedResult);
   });
+
+  it('tests resolveIds (with cwdPath)', () => {
+    configReader = new ConfigReader('**/*.spec.js');
+    const expectedResult: string[] = [
+      `${ cwd() }\\${ dirPathBackSlashed }someDir\\4.spec.js`
+    ];
+
+    
+    const paths = configReader.resolveIds(
+      ['4'],
+      `${ cwd() }\\${ dirPathBackSlashed }someDir`
+    );
+
+
+    expect(paths).toEqual(expectedResult);
+  });
+
+  it('tests getAllIds method', () => {
+    configReader = new ConfigReader('**/*.spec.js');
+    const expectedResult: string[] = ['1', '2', '4'];
+    const fullDirPath = (`${ cwd() }\\${ dirPathBackSlashed }`);
+    
+    const results = configReader.getAllIds(fullDirPath);
+
+    expect(results).toEqual(expectedResult);
+  });
 });
+
+function verify<T>({
+  expectedResult,
+  notExpectedResult,
+  result,
+  expectedLength
+}: {
+  expectedResult: T[],
+  notExpectedResult: T[],
+  result: T[],
+  expectedLength: number
+}) {
+  expectedResult.forEach(expectedResultElement => {
+    expect(result).toContainEqual(expectedResultElement);
+  });
+  notExpectedResult.forEach(notExpectedResultElement => {
+    expect(result).not.toContainEqual(notExpectedResultElement);
+  });
+
+  expect(result.length).toEqual(expectedLength);
+}

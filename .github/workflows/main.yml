@@ -35,4 +35,4 @@ jobs:
         
       # Runs Jest tests
       - name: Run Jest tests
-        run: npm test
+        run: ./node_modules/.bin/jest

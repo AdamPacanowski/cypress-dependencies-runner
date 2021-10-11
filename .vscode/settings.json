@@ -1,8 +1,3 @@
 {
-    "terminal.integrated.windowsEnableConpty": false,
-    "typescript.inlayHints.parameterNames.enabled": "all",
-    "typescript.inlayHints.variableTypes.enabled": true,
-    "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
-    "typescript.inlayHints.parameterTypes.enabled": true,
-    "typescript.inlayHints.functionLikeReturnTypes.enabled": true
+    "terminal.integrated.windowsEnableConpty": false
 }

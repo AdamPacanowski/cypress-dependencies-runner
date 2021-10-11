@@ -32,6 +32,18 @@ export default {
   
     return fullOrderFileNames;
   },
+  drawEmpty(cwdPath: string): void {
+    const configs = configReader.readAllFilesWithMetadata(cwdPath);
+    const myGraph = new Graph(configs);
+
+    consoleUtils.log('Drawing empty...');
+
+    const graphPainter = new GraphPainter(myGraph);
+
+    graphPainter.drawSVG().then(() => {
+      consoleUtils.log('SVG file created!');
+    });
+  },
   draw(runsResultsRaw: CypressCommandLine.RunResult[], myGraph: Graph): void {
     consoleUtils.log('Drawing...');
 
@@ -44,6 +56,6 @@ export default {
 
     graphPainter.drawSVG().then(() => {
       consoleUtils.log('SVG file created!');
-    })
+    });
   }
 };

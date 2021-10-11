@@ -14,13 +14,29 @@ class GraphPainter {
     const graphConnections = serializedGraph
       .links.map(link => `${ link.source } -> ${ link.target }`);    
     
+    const getColorFragment = (nodeId: string) => {
+      if (!this.myGraph.colors) {
+        return '';
+      }
+
+      return `<TR><TD><FONT POINT-SIZE="8">(${ this.myGraph.colors[nodeId].text })</FONT></TD></TR>`;
+    };
+
+    const getFillColorFragment = (nodeId: string) => {
+      if (!this.myGraph.colors) {
+        return '';
+      }
+
+      return `[fillcolor=${ this.myGraph.colors[nodeId].color }]`;
+    } 
+
     const nodes = serializedGraph
       .nodes.map(node => `"${ node.id }" [label=<
         <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="-6">
             <TR><TD>${ node.id }</TD></TR>
-            <TR><TD><FONT POINT-SIZE="8">(${ this.myGraph.colors[node.id].text })</FONT></TD></TR>
+            ${ getColorFragment(node.id) }
         </TABLE>
-        >][fillcolor=${ this.myGraph.colors[node.id].color }]`);
+        >]${ getFillColorFragment(node.id) }`);
 
     let fontMarkup = '';
 

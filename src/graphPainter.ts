@@ -57,12 +57,10 @@ class GraphPainter {
     return input;
   }
 
-  public async drawSVG(): Promise<string> {
+  public async drawSVG(fileName?: string): Promise<string> {
     const input = this.generateMarkup();
 
     consoleUtils.log(input);
-
-    const fileName = process.env.CDR_SVG_FILE_NAME || 'graphFile';
 
     return drawSvg(input, fileName);
   }

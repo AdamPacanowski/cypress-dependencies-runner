@@ -3,6 +3,7 @@
 import { cwd } from 'process';
 import yargs from 'yargs';
 import indexFunctions from './index';
+import { getDescription, getValue } from './parameters';
 
 yargs
   .scriptName("cypress-runner")
@@ -29,19 +30,19 @@ yargs
       default: cwd(),
       describe: 'absolute path where script should find ids'
     });
-    yargs.positional('outputFullPath', {
+    yargs.positional('outputSvgFileName', {
       type: 'string',
-      default: 'output.svg',
-      describe: 'full path to place (including filename) where you can save image'
+      default: getValue('outputSvgFileName'),
+      describe: getDescription('outputSvgFileName')
     })
   }, function (argv: {
     cwdPath: string,
-    outputFullPath: string
+    outputSvgFileName: string
   }) {
     console.log(`cwdPath: ${ argv.cwdPath }`);
-    console.log(`outputFullPath: ${ argv.outputFullPath }`);
+    console.log(`outputSvgFileName: ${ argv.outputSvgFileName }`);
 
-    indexFunctions.drawEmpty(argv.cwdPath);
+    indexFunctions.drawEmpty(argv.cwdPath, argv.outputSvgFileName);
   })
   .help()
   .argv;

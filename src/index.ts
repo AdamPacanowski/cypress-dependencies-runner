@@ -32,7 +32,7 @@ export default {
   
     return fullOrderFileNames;
   },
-  drawEmpty(cwdPath: string): void {
+  drawEmpty(cwdPath: string, fileName?: string): void {
     const configs = configReader.readAllFilesWithMetadata(cwdPath);
     const myGraph = new Graph(configs);
 
@@ -40,7 +40,7 @@ export default {
 
     const graphPainter = new GraphPainter(myGraph);
 
-    graphPainter.drawSVG().then(() => {
+    graphPainter.drawSVG(fileName).then(() => {
       consoleUtils.log('SVG file created!');
     });
   },

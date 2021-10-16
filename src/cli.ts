@@ -24,25 +24,39 @@ yargs
 
     console.log(results);
   })
-  .command('draw', 'draw (empty) diagram', (yargs) => {
+  .command('order [cwdPath]', 'get order resulting from graph', (yargs) => {
     yargs.positional('cwdPath', {
       type: 'string',
       default: cwd(),
       describe: 'absolute path where script should find ids'
     });
-    yargs.positional('outputSvgFileName', {
-      type: 'string',
-      default: getValue('outputSvgFileName'),
-      describe: getDescription('outputSvgFileName')
-    })
-  }, function (argv: {
-    cwdPath: string,
-    outputSvgFileName: string
+  }, function(argv: {
+    cwdPath: string
   }) {
-    console.log(`cwdPath: ${ argv.cwdPath }`);
-    console.log(`outputSvgFileName: ${ argv.outputSvgFileName }`);
+    const myGraph = indexFunctions.run(argv.cwdPath);
+    const order = indexFunctions.getFullOrder(myGraph);
 
-    indexFunctions.drawEmpty(argv.cwdPath, argv.outputSvgFileName);
+    console.log(JSON.stringify(order));
   })
+  // .command('draw', 'draw (empty) diagram', (yargs) => {
+  //   yargs.positional('cwdPath', {
+  //     type: 'string',
+  //     default: cwd(),
+  //     describe: 'absolute path where script should find ids'
+  //   });
+  //   yargs.positional('outputSvgFileName', {
+  //     type: 'string',
+  //     default: getValue('outputSvgFileName'),
+  //     describe: getDescription('outputSvgFileName')
+  //   })
+  // }, function (argv: {
+  //   cwdPath: string,
+  //   outputSvgFileName: string
+  // }) {
+  //   console.log(`cwdPath: ${ argv.cwdPath }`);
+  //   console.log(`outputSvgFileName: ${ argv.outputSvgFileName }`);
+
+  //   indexFunctions.drawEmpty(argv.cwdPath, argv.outputSvgFileName);
+  // })
   .help()
   .argv;

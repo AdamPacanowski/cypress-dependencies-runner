@@ -1,6 +1,7 @@
 import { expect } from '@jest/globals';
 import { join } from 'path';
 import { spawn } from 'child_process';
+import { cwd } from 'process';
 
 // https://engineering.britebill.com/2018/10/30/end-to-end-testing-cli-apps-jest.html
 
@@ -32,4 +33,24 @@ describe('cli', () => {
     // TODO Extend
     expect(result.split('\n').length).toEqual(15);
   });
+
+  it('tests order', async () => {
+    const currentCwd = cwd();
+
+    const result = await runCli([
+      'order',
+      join(currentCwd, 'tests', 'cypress', 'integration')
+    ]);
+
+    const json = JSON.parse(result) as string[];
+    const order = ['3_0', '2.4', '3.1', '3.2', '2.3', '2.2', '3.3', '1.1', '2.1', '1.2'];
+
+    json.forEach((entry, i) => {
+      const normalizedCwd = currentCwd.split('\\').filter(f => f).join('|');
+      const normalizedEntry = entry.split('\\').filter(f => f).join('|');
+
+      expect(normalizedEntry).toMatch(new RegExp(`${ normalizedCwd }.*`));
+      expect(normalizedEntry).toMatch(new RegExp(`.*${ order[i] }.spec.js`));
+    });
+  });  
 });

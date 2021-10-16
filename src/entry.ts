@@ -24,7 +24,7 @@ export default (cypress: typeof cypressTyping, env: object) => {
 
   cypress.run(options).then((results) => {
     const correctResults = results as CypressCommandLine.CypressRunResult;
-
+    console.log(results);
     CypressRunner.draw(correctResults.runs, myGraph);
   });
 };

@@ -15,6 +15,9 @@ class ResultsParser {
   constructor() {}
 
   parse(results: CypressRunResultsRuns): IResult[] {
+    console.log('--------------------');
+    console.log(results);
+
     const parsedResult = results.map(result => {
       return {
         specAbsolutePath: path.normalize(result.spec.absolute),

@@ -13,6 +13,8 @@
     "cypress": "7.2.0"
   },
   "devDependencies": {
-    "axios": "^0.21.1"
+    "axios": "^0.21.1",
+    "mochawesome": "^6.3.1",
+    "mochawesome-merge": "^4.2.0"
   }
 }

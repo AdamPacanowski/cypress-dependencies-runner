@@ -12,7 +12,7 @@ class GraphPainter {
   public generateMarkup() {
     const serializedGraph = this.myGraph.graph.serialize();
     const graphConnections = serializedGraph
-      .links.map(link => `${ link.source } -> ${ link.target }`);    
+      .links.map(link => `"${ link.source }" -> "${ link.target }"`);    
     
     const getColorFragment = (nodeId: string) => {
       if (!this.myGraph.colors) {
@@ -53,7 +53,7 @@ class GraphPainter {
         ${ graphConnections.join(';\n') }
       }
     `;
-
+      console.log(input)
     return input;
   }
 

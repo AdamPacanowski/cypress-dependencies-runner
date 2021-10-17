@@ -53,6 +53,10 @@ In your project directory
 
 ## Changelog
 
+### 0.5.1
+
+- Fixed another problem with spaces in id's
+
 ### 0.5.0
 
 - Now you will get custom error when problem with parsing tags

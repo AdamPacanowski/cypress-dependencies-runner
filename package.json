@@ -1,6 +1,6 @@
 {
   "name": "cypress-dependencies-runner",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "",
   "directories": {
     "test": "tests"

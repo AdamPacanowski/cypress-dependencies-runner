@@ -38,6 +38,11 @@ This package is helping to manage dependencies between cypress tests.
 
 ## Changelog
 
+
+### 0.5.2
+
+- Add `silent` option
+
 ### 0.5.1
 
 - Fixed another problem with spaces in id's

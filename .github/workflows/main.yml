@@ -33,6 +33,9 @@ jobs:
       - name: Run `npm install`
         run: npm install
         
+      - name: 'Pwd'
+        run: 'pwd'
+
       # Runs Jest tests
       - name: Run Jest tests
-        run: ./node_modules/.bin/jest
+        run: npm test

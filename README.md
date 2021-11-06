@@ -1,5 +1,7 @@
 # cypress-dependency-runner
 
+[![CI](https://github.com/AdamPacanowski/cypress-dependencies-runner/actions/workflows/main.yml/badge.svg)](https://github.com/AdamPacanowski/cypress-dependencies-runner/actions/workflows/main.yml)
+
 This package is helping to manage dependencies between cypress tests.
 
 ## Structure

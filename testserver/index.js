@@ -1,3 +1,4 @@
+const process = require('process');
 const express = require('express');
 const bodyParser = require("body-parser");
 const app = express();
@@ -32,4 +33,10 @@ app.delete('/', (req, res) => {
 });
 
 app.listen(3000);
+
+if (process.send) {
+  process.send({
+    started: true
+  });
+}
 

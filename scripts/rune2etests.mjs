@@ -48,7 +48,6 @@ try {
       testProcess.stdout.on('data', function (data) {   process.stdout.write(data.toString());  });
       testProcess.stderr.on('data', function (data) {   process.stdout.write(data.toString());  });
       testProcess.on('close', () => {
-        serverProcess.exit(0);
         process.exit(0);
       })
     }
@@ -56,5 +55,4 @@ try {
 }
 catch(e) {
   console.error(e);
-  serverProcess.exit(1);
 }

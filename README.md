@@ -1,4 +1,4 @@
-# cypress-dependency-runner
+# cypress-dependencies-runner
 
 [![CI](https://github.com/AdamPacanowski/cypress-dependencies-runner/actions/workflows/main.yml/badge.svg)](https://github.com/AdamPacanowski/cypress-dependencies-runner/actions/workflows/main.yml)
 
@@ -20,7 +20,7 @@ This package is helping to manage dependencies between cypress tests.
 
 ### How to use it?
 
-1. `npm install --save-dev cypress-dependency-runner`
+1. `npm install --save-dev cypress-dependencies-runner`
 2. Go to your file (or create it) where you start test programmatically and inject `getFullOrder` method.
 
     e.g.
@@ -37,6 +37,21 @@ This package is helping to manage dependencies between cypress tests.
       }
     ***/
     ```
+
+### (Draft) How to use CLI
+
+In your project directory
+
+1. `npm install --save-dev cypress-dependencies-runner mochawesome mochawesome-merge`
+
+2. `./node_modules/.bin/cypress-runner generate-config <absolutePathToCypressIntegrationDirectory> <absolutePathToNewConfigFile> (optional)<absolutePathToCypressConfigFile>`
+
+3. `./node_modules/.bin/cypress run --config-file <absolutePathToNewConfigFile>  --reporter mochawesome --reporter-options reportDir="cypress/results",overwrite=false,html=false,json=true`
+
+4. `./node_modules/.bin/mochawesome-merge "cypress/results/*.json" > mochawesome.json`
+
+5. `./node_modules/.bin/cypress-runner draw <absolutePathToCypressIntegrationDirectory> (temporary)<absolutePathToCypressRootDirectory> <absolutePathToMochawesomeJson>`
+
 
 ## Changelog
 

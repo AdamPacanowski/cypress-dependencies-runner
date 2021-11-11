@@ -1,6 +1,6 @@
 {
   "name": "cypress-dependencies-runner",
-  "version": "0.5.2",
+  "version": "0.6.0-alpha1",
   "description": "",
   "bin": {
     "cypress-runner": "./built/cli.js"

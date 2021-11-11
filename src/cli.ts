@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { cwd } from 'process';
-import { readFileSync } from 'fs';
+import { readFileSync, existsSync, writeFileSync } from 'fs';
 import { join } from 'path';
 import yargs from 'yargs';
 import indexFunctions from './index';
@@ -25,6 +25,47 @@ yargs
       .sort((a, b) => a.localeCompare(b));
 
     console.log(results);
+  })
+  .command('generate-config [cwdPath] [newConfig] [config]', 'generate config', (yargs) => {
+    yargs.positional('cwdPath', {
+      type: 'string',
+      default: cwd(),
+      describe: 'absolute path where script should find ids'
+    })
+    yargs.positional('newConfig', {
+      type: 'string',
+      default: null,
+      describe: 'path to new file'
+    });
+    yargs.positional('config', {
+      type: 'string',
+      default: null,
+      describe: 'path to config file (if null then will be created)'
+    });
+  }, function(argv: {
+    cwdPath: string,
+    newConfig: string,
+    config: string
+  }) {
+    const myGraph = indexFunctions.run(argv.cwdPath);
+    const order = indexFunctions.getFullOrder(myGraph);
+
+    let configJson: object;
+
+    if (argv.config) {
+      if (existsSync(argv.config)) {
+        configJson = JSON.parse(readFileSync(argv.config).toString());
+      } else {
+        throw new Error('MISSING DEFINED FILE');
+      }
+    } else {
+      configJson = {};
+    }
+
+    configJson['testFiles'] = order;
+
+    writeFileSync(argv.newConfig, JSON.stringify(configJson));
+    console.log(`Saved to ${ argv.newConfig }`);
   })
   .command('order [cwdPath]', 'get order resulting from graph', (yargs) => {
     yargs.positional('cwdPath', {

@@ -31,7 +31,7 @@ describe('cli', () => {
     const result = await runCli(['ids']);
 
     // TODO Extend
-    expect(result.split('\n').length).toEqual(15);
+    expect(result.split('\n').length).toEqual(16);
   });
 
   it('tests order', async () => {

@@ -47,8 +47,8 @@ try {
   
       testProcess.stdout.on('data', function (data) {   process.stdout.write(data.toString());  });
       testProcess.stderr.on('data', function (data) {   process.stdout.write(data.toString());  });
-      testProcess.on('close', () => {
-        process.exit(0);
+      testProcess.on('close', (code) => {
+        process.exit(code);
       })
     }
   }); 

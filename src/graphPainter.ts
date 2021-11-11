@@ -59,9 +59,7 @@ class GraphPainter {
 
   public async drawSVG(fileName?: string): Promise<string> {
     const input = this.generateMarkup();
-
-    consoleUtils.log(input);
-
+    console.log('fileName', fileName);
     return drawSvg(input, fileName);
   }
 }

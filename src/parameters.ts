@@ -1,5 +1,5 @@
 // TODO Typings
-const PARAMETERS = {
+export const PARAMETERS = {
   outputSvgFileName: {
     default: 'graphFile.svg',
     envKey: 'CDR_SVG_FILE_NAME',

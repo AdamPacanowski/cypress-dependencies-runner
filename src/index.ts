@@ -44,7 +44,11 @@ export default {
       consoleUtils.log('SVG file created!');
     });
   },
-  draw(runsResultsRaw: CypressCommandLine.RunResult[], myGraph: Graph): void {
+  draw(
+    runsResultsRaw: CypressCommandLine.RunResult[],
+    myGraph: Graph, 
+    fileName?: string
+  ): void {
     consoleUtils.log('Drawing...');
 
     const resultsParser = new ResultsParser();
@@ -54,7 +58,7 @@ export default {
 
     const graphPainter = new GraphPainter(myGraph);
 
-    graphPainter.drawSVG().then(() => {
+    graphPainter.drawSVG(fileName).then(() => {
       consoleUtils.log('SVG file created!');
     });
   }

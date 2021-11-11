@@ -125,7 +125,7 @@ describe('configReader', () => {
       expectedResult,
       notExpectedResult,
       result: configsWithMetadata,
-      expectedLength: 3
+      expectedLength: 4
     });
   });
 

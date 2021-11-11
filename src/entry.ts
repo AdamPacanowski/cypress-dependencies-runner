@@ -7,7 +7,7 @@ interface ICypressRunOptions {
   env?: object;
 }
 
-export default (cypress: typeof cypressTyping, env: object) => {
+export default (cypress: typeof cypressTyping, env: object, silent: boolean = false) => {
   const myGraph = CypressRunner.run();
 
   const options: ICypressRunOptions = {
@@ -20,7 +20,9 @@ export default (cypress: typeof cypressTyping, env: object) => {
     options.env = env;
   }
 
-  console.log('cypress options:', options);
+  if (!silent) {
+    console.log('cypress options:', options);
+  }
 
   cypress.run(options).then((results) => {
     const correctResults = results as CypressCommandLine.CypressRunResult;

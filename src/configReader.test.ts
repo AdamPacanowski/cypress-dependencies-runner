@@ -19,6 +19,7 @@ describe('configReader', () => {
     const expectedResult = [
       `${ dirPath }1.spec.js`,
       `${ dirPath }2.spec.js`,
+      `${ dirPath }10.spec.js`,
       `${ dirPath }someDir/4.spec.js`
     ];
     const notExpectedResult = [
@@ -67,7 +68,11 @@ describe('configReader', () => {
     const expectedResult: IDescribeConfig[] = [
       { id: '1' },
       { id: '2' },
-      { id: '4' }
+      { id: '4' },
+      { 
+        id: 'Last test',
+        require: ["1", "2"]
+      }
     ];
     const notExpectedResult: IDescribeConfig[] = [
       { id: '3' }
@@ -83,6 +88,11 @@ describe('configReader', () => {
       result: configs,
       expectedLength: 3
     });
+<<<<<<< HEAD
+=======
+
+    expect(configs.length).toEqual(expectedResult.length);
+>>>>>>> master
   });
 
   it('tests readAllFilesWithMetadata', () => {
@@ -94,6 +104,11 @@ describe('configReader', () => {
       { 
         id: '2',
         specAbsolutePath: `${ cwd() }\\${ dirPathBackSlashed }2.spec.js`
+      },
+      { 
+        id: 'Last test',
+        require: ["1", "2"],
+        specAbsolutePath: `${ cwd() }\\${ dirPathBackSlashed }10.spec.js`
       },
       { 
         id: '4',
@@ -117,6 +132,14 @@ describe('configReader', () => {
       result: configsWithMetadata,
       expectedLength: 3
     });
+<<<<<<< HEAD
+=======
+    notExpectedResult.forEach(idcmwObject => {
+      expect(configsWithMetadata).not.toContainEqual(idcmwObject);
+    });
+
+    expect(configsWithMetadata.length).toEqual(expectedResult.length);
+>>>>>>> master
   });
 
   it('tests resolveIds (not all entries, custom order)', () => {

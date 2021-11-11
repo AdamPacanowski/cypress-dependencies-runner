@@ -1,5 +1,7 @@
 # cypress-dependency-runner
 
+[![CI](https://github.com/AdamPacanowski/cypress-dependencies-runner/actions/workflows/main.yml/badge.svg)](https://github.com/AdamPacanowski/cypress-dependencies-runner/actions/workflows/main.yml)
+
 This package is helping to manage dependencies between cypress tests.
 
 ## Structure
@@ -37,6 +39,15 @@ This package is helping to manage dependencies between cypress tests.
     ```
 
 ## Changelog
+
+
+### 0.5.2
+
+- Add `silent` option
+
+### 0.5.1
+
+- Fixed another problem with spaces in id's
 
 ### 0.5.0
 

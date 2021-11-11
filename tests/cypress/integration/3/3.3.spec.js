@@ -2,7 +2,7 @@
 
 /***CypressRunner
   {
-    "id": "3.3",
+    "id": "Last test",
     "require": ["3.2", "2.2"] 
   }
 ***/

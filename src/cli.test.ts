@@ -123,7 +123,7 @@ describe('cli', () => {
     ]);
 
     expect(result.includes('SVG file created!')).toBeTruthy();
-    expectToFileExists('mycustomname2.svg');
+    expectToFileExists('mycustomname2.svg');  
 
     const svgFile = readFileSync('mycustomname2.svg').toString();
     const svgTagExistance = svgFile.includes('<svg');

@@ -26,7 +26,7 @@ yargs
 
     console.log(results);
   })
-  .command('generate-config [cwdPath] [newConfig] [config]', 'generate config', (yargs) => {
+  .command('generate-config [cwdPath] [newConfig] [config]', 'generate config file', (yargs) => {
     yargs.positional('cwdPath', {
       type: 'string',
       default: cwd(),

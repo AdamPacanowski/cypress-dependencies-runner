@@ -18,7 +18,9 @@ This package is helping to manage dependencies between cypress tests.
 - `resultsParser.js` - class ResultsParser; parsing cypress report
 - `utils/readFile.js` - util to read file in specific way
 
-### How to use it?
+## How to use it?
+
+### by including to your code
 
 1. `npm install --save-dev cypress-dependencies-runner`
 2. Go to your file (or create it) where you start test programmatically and inject `getFullOrder` method.
@@ -38,7 +40,27 @@ This package is helping to manage dependencies between cypress tests.
     ***/
     ```
 
-### (Draft) How to use CLI
+### by CLI
+
+#### Options
+
+- `ids [cwdPath]`
+  - get all ids which was parsed
+- `generate-config [cwdPath] [newConfig] [config]`
+  - generate config file
+- `order [cwdPath]`
+  - get order resulting from graph
+- `draw [cwdPath] [resultsJson]`
+  - draw (empty) diagram
+- (to implement) `apply-order`
+  - apply graph order to filenames
+- (to implement) `run full`
+- (to implement) `run only <node>`
+- (to implement) `run roadto <node>`
+
+
+
+##### WIP (Draft) How to use CLI
 
 In your project directory
 

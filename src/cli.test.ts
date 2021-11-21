@@ -134,4 +134,29 @@ describe('cli', () => {
     expect(gNo).toEqual(21);
     expect(someFillGreenColorApplied).toBeTruthy();
   });
+
+  it('should return config', async () => {
+    const currentCwd = cwd();
+    const newConfigFileName = 'newConfig.json'
+    const result = await runCli([
+      'generate-config',
+      join(currentCwd, 'tests', 'cypress', 'integration'),
+      newConfigFileName
+    ]);
+
+    expect(result.includes(`Saved to ${ newConfigFileName }`));
+    expectToFileExists(newConfigFileName);
+
+    // TODO typings
+    const configCreated = JSON.parse(readFileSync(newConfigFileName).toString());
+    const order = ['3_0', '2.4', '3.1', '3.2', '2.3', '2.2', '3.3', '1.1', '2.1', '1.2'];
+
+    for (let i=0; i<order.length; i++) {
+      expect((configCreated.testFiles[i] as string).includes(order[i])).toBeTruthy();
+    }
+  });
+
+  // it('should return merged config', async () => {
+    // TODO
+  // });
 });

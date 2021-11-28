@@ -6,3 +6,4 @@ built
 *.mp4
 *.env
 *.tgz
+newConfig.json

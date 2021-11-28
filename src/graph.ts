@@ -143,6 +143,68 @@ class Graph {
   getTopologicalSort(): string[] {
     return this.graph.topologicalSort();
   }
+
+  _getFirstNode(destinationNode: string): string {
+    const topologicalSort = this.getTopologicalSort();
+
+    const isConnected = (firstNode: string, destinationNode: string) => {
+      let connected = false;
+
+      try {
+        this.graph.shortestPath(firstNode, destinationNode);
+        connected = true;
+      }
+      catch(e) {
+        connected = false;
+      }
+
+      return connected;
+    };
+
+    let firstNode;
+
+    for(let i=0; i<topologicalSort.length; i++) {
+      if (isConnected(topologicalSort[i], destinationNode)) {
+        firstNode = topologicalSort[i];
+        break;
+      }
+    }
+
+    return firstNode;
+  }
+
+  connectionExists(sourceNode, destinationNode) {
+    let ok = false;
+
+    try {
+      this.graph.shortestPath(sourceNode, destinationNode);
+      ok = true;
+    }
+    catch (e) {
+      ok = false;
+    }
+
+    return ok;
+  }
+
+  // TODO - write test with two separated graphs
+  getAllAncestors(destinationNode: string, includeDestinationNode: boolean = true): string[] {
+    const topologicalSort = this.getTopologicalSort();
+
+    let fullPath = topologicalSort.reduce((arr, currentNode) => {
+      if (this.connectionExists(currentNode, destinationNode)) {
+        arr.push(currentNode);
+      }
+
+      return arr;
+    }, []);
+
+    if (!includeDestinationNode) {
+      fullPath = fullPath.filter(node => node !== destinationNode);
+    }
+
+    return fullPath;
+  }
 }
 
 export default Graph;

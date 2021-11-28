@@ -54,9 +54,9 @@ This package is helping to manage dependencies between cypress tests.
   - draw (empty) diagram
 - (to implement) `apply-order`
   - apply graph order to filenames
-- (to implement) `run full`
-- (to implement) `run only <node>`
-- (to implement) `run roadto <node>`
+- (to describe) `run full`
+- (to describe) `run only <node>`
+- (to describe) `run roadto <node>`
 
 
 

@@ -1,4 +1,5 @@
 node_modules
+_tempConfig.json
 built
 *.svg
 *.png

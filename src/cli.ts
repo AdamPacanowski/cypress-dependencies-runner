@@ -1,11 +1,42 @@
 #!/usr/bin/env node
 
 import { cwd } from 'process';
-import { readFileSync, existsSync, writeFileSync } from 'fs';
+import { readFileSync, existsSync, writeFileSync, unlinkSync } from 'fs';
 import { join } from 'path';
 import yargs from 'yargs';
 import indexFunctions from './index';
 import { getDescription, getValue } from './parameters';
+import { execFile, spawn } from 'child_process';
+
+const generateConfig = (argv: {
+  cwdPath: string,
+  newConfig: string,
+  config?: string,
+  type?: string,
+  node?: string
+}) => {
+  const myGraph = indexFunctions.getGraph(argv.cwdPath);
+  console.log(myGraph.graph.serialize());
+  const order = indexFunctions.getFullOrder(myGraph, argv.node, argv.type);
+
+  let configJson: object;
+
+  if (argv.config) {
+    if (existsSync(argv.config)) {
+      configJson = JSON.parse(readFileSync(argv.config).toString());
+    } else {
+      throw new Error('MISSING DEFINED FILE');
+    }
+  } else {
+    configJson = {};
+  }
+
+  configJson['testFiles'] = order;
+  configJson['integrationFolder'] = '.';
+
+  writeFileSync(argv.newConfig, JSON.stringify(configJson));
+  console.log(`Saved to ${ argv.newConfig }`);
+}
 
 yargs
   .scriptName("cypress-runner")
@@ -47,25 +78,7 @@ yargs
     newConfig: string,
     config: string
   }) {
-    const myGraph = indexFunctions.run(argv.cwdPath);
-    const order = indexFunctions.getFullOrder(myGraph);
-
-    let configJson: object;
-
-    if (argv.config) {
-      if (existsSync(argv.config)) {
-        configJson = JSON.parse(readFileSync(argv.config).toString());
-      } else {
-        throw new Error('MISSING DEFINED FILE');
-      }
-    } else {
-      configJson = {};
-    }
-
-    configJson['testFiles'] = order;
-
-    writeFileSync(argv.newConfig, JSON.stringify(configJson));
-    console.log(`Saved to ${ argv.newConfig }`);
+    generateConfig(argv);
   })
   .command('order [cwdPath]', 'get order resulting from graph', (yargs) => {
     yargs.positional('cwdPath', {
@@ -76,7 +89,7 @@ yargs
   }, function(argv: {
     cwdPath: string
   }) {
-    const myGraph = indexFunctions.run(argv.cwdPath);
+    const myGraph = indexFunctions.getGraph(argv.cwdPath);
     const order = indexFunctions.getFullOrder(myGraph);
 
     console.log(JSON.stringify(order));
@@ -111,10 +124,53 @@ yargs
     }
 
     // TODO Checking structure !!!
-    const myGraph = indexFunctions.run(argv.cwdPath);
+    const myGraph = indexFunctions.getGraph(argv.cwdPath);
     const runsResultsRaw = parsedResults.runs as CypressCommandLine.RunResult[];
 
     indexFunctions.draw(runsResultsRaw, myGraph, argv.outputSvgFileName);
+  })
+  .command('run [type] [cwdPath] [node]', 'run tests by runner', (yargs) => {
+    yargs.positional('type', {
+      type: 'string'
+    });
+    yargs.positional('cwdPath', {
+      type: 'string'
+    });
+    yargs.positional('node', {
+      type: 'string'
+    });
+  }, function(argv: {
+    type: string,
+    cwdPath: string,
+    node: string
+  }) {
+    const tempConfigName = '_tempConfig.json';
+    const tempConfigExists = existsSync(tempConfigName);
+
+    if (tempConfigExists) {
+      unlinkSync(tempConfigName);
+    }    
+
+    generateConfig({
+      cwdPath: argv.cwdPath,
+      newConfig: tempConfigName,
+      type: argv.type,
+      node: argv.node
+    });
+
+    const proc = spawn(/^win/.test(process.platform) ? 'npx.cmd' : 'npx', [
+      'cypress',
+      'run',
+      `--config-file=${ tempConfigName }`
+    ]);
+
+    proc.stdout.on('data', (chunk) => {
+      console.log(chunk.toString());
+    });
+  
+    proc.stderr.on('data', (chunk) => {
+      console.log(chunk.toString());
+    });
   })
   .help()
   .argv;

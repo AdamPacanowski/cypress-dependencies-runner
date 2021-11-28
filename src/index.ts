@@ -10,7 +10,7 @@ const globPattern = process.env.CDR_GLOB_PATTERN || '**/*.spec.js';
 let configReader = new ConfigReader(globPattern);
 
 export default {
-  run(cwdPath?: string): Graph { // TODO change to class and move it to constructor
+  getGraph(cwdPath?: string): Graph { // TODO change to class and move it to constructor
     const configs = configReader.readAllFilesWithMetadata(cwdPath);
 
     const myGraph = new Graph(configs);
@@ -26,11 +26,18 @@ export default {
 
     return results;
   },
-  getFullOrder(myGraph: Graph): string[] {
+  getFullOrder(myGraph: Graph, destinationNode?: string, special?: string): string[] {
+    if (special === 'roadto' || special === 'only') {
+      const fullOrder = myGraph.getAllAncestors(destinationNode, special === 'only');
+      const fullOrderFileNames = configReader.resolveIds(fullOrder);
+
+      return fullOrderFileNames;
+    } 
+    
     const fullOrder = myGraph.getTopologicalSort();
     const fullOrderFileNames = configReader.resolveIds(fullOrder);
-  
-    return fullOrderFileNames;
+
+    return fullOrderFileNames;  
   },
   drawEmpty(cwdPath: string, fileName?: string): void {
     const configs = configReader.readAllFilesWithMetadata(cwdPath);
@@ -61,5 +68,11 @@ export default {
     graphPainter.drawSVG(fileName).then(() => {
       consoleUtils.log('SVG file created!');
     });
+  },
+  get(
+    type: string, // TBD change to enum
+    cwdPath: string
+  ): void {
+
   }
 };

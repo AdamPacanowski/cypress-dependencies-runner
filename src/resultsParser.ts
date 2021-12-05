@@ -26,7 +26,7 @@ class ResultsParser {
         pending: result.stats.pending,
         skipped: result.stats.skipped,
         failures: result.stats.failures
-      }
+      };
     });
 
     return parsedResult;

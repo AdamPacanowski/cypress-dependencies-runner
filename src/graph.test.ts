@@ -1,6 +1,6 @@
 import { expect } from '@jest/globals';
 
-import Graph from './graph'
+import Graph from './graph';
 
 import { configs, results } from './jestFixtures/graph/basicGraphExampleData';
 
@@ -18,7 +18,7 @@ describe('graph', () => {
       '3.1': ['3.2'],
       '3.2': ['3.3'],
       '3.3': []
-    }
+    };
     const nodes = myGraph.graph.nodes();
     const expectedNodes = Object.keys(simpleGraphDefinition);
 
@@ -34,7 +34,7 @@ describe('graph', () => {
         expect(simpleGraphDefinition[node]).toContainEqual(adjacentNode);
       });
       expect(simpleGraphDefinition[node].length).toEqual(adjacentNodes.length);
-    })
+    });
   });
 
   it('tests topological sort (basic data)', () => {

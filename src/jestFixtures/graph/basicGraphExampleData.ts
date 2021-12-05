@@ -45,7 +45,7 @@ export const configs: IDescribeConfigWithMetaData[] = [
     require: [ '3.2', '2.2' ],
     specAbsolutePath: 'C:\\Software\\CypressRunner\\tests\\cypress\\integration\\3\\3.3.spec.js'
   }
-]
+];
 
 export const results = [
   {

@@ -28,7 +28,7 @@ class GraphPainter {
       }
 
       return `[fillcolor=${ this.myGraph.colors[nodeId].color }]`;
-    } 
+    }; 
 
     const nodes = serializedGraph
       .nodes.map(node => `"${ node.id }" [label=<
@@ -53,7 +53,7 @@ class GraphPainter {
         ${ graphConnections.join(';\n') }
       }
     `;
-      console.log(input)
+      console.log(input);
     return input;
   }
 

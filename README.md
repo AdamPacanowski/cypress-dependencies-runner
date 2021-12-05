@@ -52,12 +52,15 @@ This package is helping to manage dependencies between cypress tests.
   - get order resulting from graph
 - `draw [cwdPath] [resultsJson]`
   - draw (empty) diagram
+- `run [type] [cwdPath] [node]`
+  - `[type]`
+    - `full` - start all tests in right order
+    - `only` - start only tests which are required for `[node]` (including `[node]`)
+      - `[node]` required
+    - `roadto` - start only tests which are required for `[node]` (excluding `[node]`)
+      - `[node]` required
 - (to implement) `apply-order`
   - apply graph order to filenames
-- (to describe) `run full`
-- (to describe) `run only <node>`
-- (to describe) `run roadto <node>`
-
 
 
 ##### WIP (Draft) How to use CLI

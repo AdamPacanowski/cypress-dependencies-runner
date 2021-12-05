@@ -13,4 +13,4 @@ export default async (input, fileName) => {
   catch(e) {
     throw e;
   }
-}
+};

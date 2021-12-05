@@ -137,7 +137,7 @@ describe('cli', () => {
 
   it('should return config', async () => {
     const currentCwd = cwd();
-    const newConfigFileName = 'newConfig.json'
+    const newConfigFileName = 'newConfig.json';
     const result = await runCli([
       'generate-config',
       join(currentCwd, 'tests', 'cypress', 'integration'),

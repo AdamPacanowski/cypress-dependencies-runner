@@ -36,7 +36,7 @@ const generateConfig = (argv: {
 
   writeFileSync(argv.newConfig, JSON.stringify(configJson));
   console.log(`Saved to ${ argv.newConfig }`);
-}
+};
 
 yargs
   .scriptName("cypress-runner")
@@ -62,7 +62,7 @@ yargs
       type: 'string',
       default: cwd(),
       describe: 'absolute path where script should find ids'
-    })
+    });
     yargs.positional('newConfig', {
       type: 'string',
       default: null,

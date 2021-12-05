@@ -188,7 +188,7 @@ class Graph {
   }
 
   // TODO - write test with two separated graphs
-  getAllAncestors(destinationNode: string, includeDestinationNode: boolean = true): string[] {
+  getAllAncestors(destinationNode: string, includeDestinationNode = true): string[] {
     const topologicalSort = this.getTopologicalSort();
 
     let fullPath = topologicalSort.reduce((arr, currentNode) => {

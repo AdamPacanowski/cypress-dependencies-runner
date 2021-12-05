@@ -7,7 +7,7 @@ interface ICypressRunOptions {
   env?: object;
 }
 
-export default (cypress: typeof cypressTyping, env: object, silent: boolean = false) => {
+export default (cypress: typeof cypressTyping, env: object, silent = false) => {
   const myGraph = CypressRunner.getGraph();
 
   const options: ICypressRunOptions = {

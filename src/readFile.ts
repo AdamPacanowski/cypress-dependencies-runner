@@ -9,7 +9,7 @@ export class ReadFileJSONParseError extends Error {
     this.name = 'ReadFileJSONParseError';
     this.filePath = filePath;
   }
-}
+};
 
 export interface IDescribeConfig {
   id: string;

@@ -7,7 +7,7 @@ import ResultsParser from "./resultsParser";
 
 const globPattern = process.env.CDR_GLOB_PATTERN || '**/*.spec.js';
 
-let configReader = new ConfigReader(globPattern);
+const configReader = new ConfigReader(globPattern);
 
 export default {
   getGraph(cwdPath?: string): Graph { // TODO change to class and move it to constructor

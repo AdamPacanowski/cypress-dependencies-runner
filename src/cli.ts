@@ -1,12 +1,9 @@
 #!/usr/bin/env node
 
 import { cwd } from 'process';
-import { readFileSync, existsSync, writeFileSync, unlinkSync } from 'fs';
-import { join } from 'path';
+
 import yargs from 'yargs';
-import indexFunctions from './index';
-import { getDescription, getValue } from './parameters';
-import { execFile, spawn } from 'child_process';
+
 import { 
   draw,
   generateConfig,

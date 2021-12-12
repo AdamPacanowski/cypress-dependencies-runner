@@ -1,5 +1,7 @@
-import type * as cypressTyping from 'cypress';
 import fs from 'fs';
+
+import type * as cypressTyping from 'cypress';
+
 import CypressRunner from './index';
 
 interface ICypressRunOptions {

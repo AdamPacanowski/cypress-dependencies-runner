@@ -11,7 +11,6 @@ const drawSvgMocked = mocked(drawSvg);
 
 import Graph from './graph';
 import GraphPainter from './graphPainter';
-
 import { 
   configs as basicConfigs, 
   results as basicResults, 

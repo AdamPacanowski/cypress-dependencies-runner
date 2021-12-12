@@ -1,5 +1,7 @@
-import { expect } from '@jest/globals';
 import path from 'path';
+
+import { expect } from '@jest/globals';
+
 import readFile, { ReadFileJSONParseError } from './readFile';
 
 describe('readFile', () => {

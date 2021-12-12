@@ -1,6 +1,7 @@
-import { expect } from '@jest/globals';
 import path from 'path';
 import { cwd } from 'process';
+
+import { expect } from '@jest/globals';
 
 import ConfigReader, { IDescribeConfigWithMetaData } from './configReader';
 import { IDescribeConfig } from './readFile';

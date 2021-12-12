@@ -1,8 +1,9 @@
-import { expect } from '@jest/globals';
 import { join } from 'path';
 import { spawn } from 'child_process';
 import { cwd } from 'process';
 import { existsSync, readFileSync } from 'fs';
+
+import { expect } from '@jest/globals';
 
 // https://engineering.britebill.com/2018/10/30/end-to-end-testing-cli-apps-jest.html
 

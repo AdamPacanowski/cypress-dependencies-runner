@@ -1,4 +1,5 @@
 import { expect } from '@jest/globals';
+
 import consoleUtils from './consoleUtils';
 
 describe('consoleUtils', () => {

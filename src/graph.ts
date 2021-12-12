@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import GraphDS from 'graph-data-structure';
+
 // https://www.npmjs.com/package/graph-data-structure#querying-the-graph
 import { IDescribeConfigWithMetaData } from './configReader';
 import { IResult } from './resultsParser';

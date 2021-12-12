@@ -1,7 +1,6 @@
 import { expect } from '@jest/globals';
 
 import Graph from './graph';
-
 import { configs, results } from './jestFixtures/graph/basicGraphExampleData';
 
 describe('graph', () => {

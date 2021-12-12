@@ -1,5 +1,6 @@
 import { readFileSync, existsSync, writeFileSync, unlinkSync } from 'fs';
 import { spawn } from 'child_process';
+
 import indexFunctions from './index';
 
 const _generateConfig = (argv: {

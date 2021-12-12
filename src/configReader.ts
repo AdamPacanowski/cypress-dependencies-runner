@@ -1,6 +1,7 @@
-import * as glob from 'glob';
 import * as path from 'path';
 import { cwd } from 'process';
+
+import * as glob from 'glob';
 
 import readFile, { IDescribeConfig } from './readFile';
 

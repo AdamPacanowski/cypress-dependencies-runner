@@ -1,4 +1,5 @@
-import { renderGraphFromSource } from 'graphviz-cli'; 
+import { renderGraphFromSource } from 'graphviz-cli';
+ 
 import { checkAndGetValue } from './parameters';
 
 export default async (input, fileName) => {

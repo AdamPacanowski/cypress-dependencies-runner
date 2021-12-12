@@ -7,12 +7,19 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/recommended"
   ],
   "rules": {
     "no-extra-semi": "off",
     "@typescript-eslint/no-extra-semi": "off",
     "semi": "error",
-    "@typescript-eslint/semi": "error"
+    "@typescript-eslint/semi": "error",
+    "import/no-unresolved": "off",
+    "import/order": [
+      "error", {
+        "newlines-between": "always"
+      }
+    ]
   }
 }

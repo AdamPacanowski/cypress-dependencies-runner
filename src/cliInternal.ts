@@ -73,6 +73,7 @@ export const ids = (argv: {
     .sort((a, b) => a.localeCompare(b));
 
   console.log(results);
+  return results;
 };
 
 export const order = (argv: {

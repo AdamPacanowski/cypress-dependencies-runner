@@ -32,7 +32,7 @@ function runCli(params) {
   });
 }
 
-describe('cli', () => {
+describe('cli (called from console)', () => {
   it('should return ids', async () => {
     const currentCwd = cwd();
 
@@ -42,7 +42,7 @@ describe('cli', () => {
     ]);
 
     // TODO Extend
-    expect(result.split('\n').length).toEqual(12);
+    expect(result.split('\n').length).toEqual(10);
   });
 
   it('should return order', async () => {

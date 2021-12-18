@@ -161,13 +161,16 @@ describe('configReader', () => {
 
   it('tests getAllIds method', () => {
     configReader = new ConfigReader('**/*.spec.js');
-    const expectedResult: string[] = ['1', '2', '4'];
+    const expectedResult: string[] = ['1', '2', '4', 'Last test'];
     const fullDirPath = (`${ cwd() }\\${ dirPathBackSlashed }`);
     
     const results = configReader.getAllIds(fullDirPath);
+    
+    expectedResult.forEach(expectedResultItem => {
+      expect(results).toContainEqual(expectedResultItem);
+    });
 
-    // expect(results).toEqual(expectedResult);
-    // TODO fix
+    expect(results.sort()).toEqual(expectedResult.sort());
   });
 });
 

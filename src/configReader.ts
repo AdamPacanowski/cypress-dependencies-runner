@@ -2,6 +2,7 @@ import * as path from 'path';
 import { cwd } from 'process';
 
 import * as glob from 'glob';
+import _ from 'lodash';
 
 import readFile, { IDescribeConfig } from './readFile';
 
@@ -82,7 +83,7 @@ class ConfigReader {
       }
     });
 
-    return ids;
+    return _.uniq(ids);
   }
 
   resolveIds(ids: string[], cwdPath?: string): string[] {

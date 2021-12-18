@@ -1,6 +1,7 @@
 node_modules
 _tempConfig.json
 built
+coverage
 *.svg
 *.png
 *.mp4

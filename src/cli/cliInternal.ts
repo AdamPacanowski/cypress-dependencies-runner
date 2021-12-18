@@ -1,7 +1,7 @@
 import { readFileSync, existsSync, writeFileSync, unlinkSync } from 'fs';
 import { spawn } from 'child_process';
 
-import indexFunctions from './index';
+import indexFunctions from '../index';
 
 const _generateConfig = (argv: {
   cwdPath: string,
@@ -80,9 +80,10 @@ export const order = (argv: {
   cwdPath: string
 }) => {
   const myGraph = indexFunctions.getGraph(argv.cwdPath);
-  const order = indexFunctions.getFullOrder(myGraph);
+  const fullOrder = indexFunctions.getFullOrder(myGraph);
 
-  console.log(JSON.stringify(order));
+  console.log(fullOrder);
+  return fullOrder;
 };
 
 export const run = (argv: {

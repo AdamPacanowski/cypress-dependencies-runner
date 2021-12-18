@@ -3,7 +3,7 @@
   "version": "0.6.0-alpha1",
   "description": "",
   "bin": {
-    "cypress-runner": "./built/cli.js"
+    "cypress-runner": "./built/cli/cli.js"
   },
   "directories": {
     "test": "tests"

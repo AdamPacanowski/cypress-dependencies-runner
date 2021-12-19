@@ -1,3 +1,7 @@
+import { 
+  readFileSync,
+  writeFileSync 
+} from 'fs';
 import { cwd } from 'process';
 import { join } from 'path';
 
@@ -13,8 +17,11 @@ import {
 } from './cliInternal';
 
 
+jest.mock('fs');
 jest.mock('../index');
 
+const mockReadFileSync = readFileSync as jest.MockedFunction<typeof readFileSync>;
+const mockWriteFileSync = writeFileSync as jest.MockedFunction<typeof writeFileSync>; 
 const mockIndexFunctions = indexFunctions as jest.Mocked<typeof indexFunctions>;
 
 const currentCwd = cwd();
@@ -56,7 +63,45 @@ describe('cli', () => {
     expect(results).toEqual(resultsMock);
   });
 
-  // it('should generate config', () => {
+  it('should generate config', () => {
+    mockIndexFunctions.getGraph.mockClear();
+    mockIndexFunctions.getFullOrder.mockClear();
+    mockReadFileSync.mockClear();
+    mockWriteFileSync.mockClear();
 
-  // });
+    const graphMock = {
+      a: 1,
+      graph: {
+        serialize: jest.fn()
+      }
+    } as unknown as Graph;
+    mockIndexFunctions.getGraph.mockReturnValue(graphMock);
+
+    const resultsMock = ['a', 'b'];
+    mockIndexFunctions.getFullOrder.mockReturnValue(resultsMock);
+
+    mockReadFileSync.mockReturnValue('{b: 1}');
+
+    const config = 'current.config';
+    const newConfig = 'testFileName.config';
+    const newConfigData = JSON.stringify({
+      b: 1,
+      testFiles: ['a', 'b'],
+      integrationFolder: '.'
+    });
+    generateConfig({
+      cwdPath: testCwdPath,
+      config: config,
+      newConfig: newConfig
+    });
+
+    expect(mockIndexFunctions.getGraph).toHaveBeenCalledTimes(1);
+    expect(mockIndexFunctions.getGraph).toHaveBeenCalledWith(testCwdPath);
+    expect(mockIndexFunctions.getFullOrder).toHaveBeenCalledTimes(1);
+    expect(mockIndexFunctions.getFullOrder).toHaveBeenCalledWith(graphMock, undefined, undefined);
+    expect(mockReadFileSync).toHaveBeenCalledTimes(1);
+    expect(mockReadFileSync).toHaveBeenCalledWith(config);
+    expect(mockWriteFileSync).toHaveBeenCalledTimes(1);
+    expect(mockWriteFileSync).toHaveBeenCalledWith(newConfig, newConfigData);
+  });
 });

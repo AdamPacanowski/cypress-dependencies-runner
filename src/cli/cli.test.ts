@@ -1,4 +1,5 @@
 import { 
+  existsSync,
   readFileSync,
   writeFileSync 
 } from 'fs';
@@ -23,6 +24,7 @@ jest.mock('../index');
 const mockReadFileSync = readFileSync as jest.MockedFunction<typeof readFileSync>;
 const mockWriteFileSync = writeFileSync as jest.MockedFunction<typeof writeFileSync>; 
 const mockIndexFunctions = indexFunctions as jest.Mocked<typeof indexFunctions>;
+const mockExistsSync = existsSync as jest.MockedFunction<typeof existsSync>;
 
 const currentCwd = cwd();
 const testCwdPath = join(currentCwd, 'tests', 'cypress', 'integration');
@@ -68,6 +70,7 @@ describe('cli', () => {
     mockIndexFunctions.getFullOrder.mockClear();
     mockReadFileSync.mockClear();
     mockWriteFileSync.mockClear();
+    mockExistsSync.mockClear();
 
     const graphMock = {
       a: 1,
@@ -80,7 +83,8 @@ describe('cli', () => {
     const resultsMock = ['a', 'b'];
     mockIndexFunctions.getFullOrder.mockReturnValue(resultsMock);
 
-    mockReadFileSync.mockReturnValue('{b: 1}');
+    mockReadFileSync.mockReturnValue('{"b": 1}');
+    mockExistsSync.mockReturnValue(true);
 
     const config = 'current.config';
     const newConfig = 'testFileName.config';
@@ -99,7 +103,7 @@ describe('cli', () => {
     expect(mockIndexFunctions.getGraph).toHaveBeenCalledWith(testCwdPath);
     expect(mockIndexFunctions.getFullOrder).toHaveBeenCalledTimes(1);
     expect(mockIndexFunctions.getFullOrder).toHaveBeenCalledWith(graphMock, undefined, undefined);
-    expect(mockReadFileSync).toHaveBeenCalledTimes(1);
+    expect(mockReadFileSync).toHaveBeenCalledTimes(2); //TODO check
     expect(mockReadFileSync).toHaveBeenCalledWith(config);
     expect(mockWriteFileSync).toHaveBeenCalledTimes(1);
     expect(mockWriteFileSync).toHaveBeenCalledWith(newConfig, newConfigData);

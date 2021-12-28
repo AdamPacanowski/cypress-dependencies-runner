@@ -1,5 +1,4 @@
 import { readFileSync, existsSync, writeFileSync, unlinkSync } from 'fs';
-import { resolve } from 'path';
 import { spawn } from 'child_process';
 
 import indexFunctions from '../index';
@@ -18,11 +17,10 @@ const _generateConfig = (argv: {
   let configJson: object;
 
   if (argv.config) {
-    try {
-      console.log('x', readFileSync(argv.config));
+    if (existsSync(argv.config)) {
       configJson = JSON.parse(readFileSync(argv.config).toString());
-    } catch (e) {
-      throw new Error(`MISSING DEFINED FILE ${ e }`);
+    } else {
+      throw new Error('MISSING DEFINED FILE');
     }
   } else {
     configJson = {};

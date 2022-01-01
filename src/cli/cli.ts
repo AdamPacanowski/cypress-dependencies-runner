@@ -71,5 +71,20 @@ yargs
       type: 'string'
     });
   }, run)
+  .option('raw', {
+    default: false,
+    description: 'raw output',
+    type: 'boolean'
+  })
+  .option('log', {
+    default: false,
+    description: 'log output',
+    type: 'boolean'
+  })
+  .option('infoDisabled', {
+    default: false,
+    description: 'info output disabled',
+    type: 'boolean'
+  })
   .help()
   .argv;

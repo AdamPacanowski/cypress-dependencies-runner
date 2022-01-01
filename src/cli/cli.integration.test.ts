@@ -1,16 +1,17 @@
+import _ from 'lodash';
 import { join } from 'path';
 import { spawn } from 'child_process';
 import { cwd } from 'process';
 import { existsSync, readFileSync } from 'fs';
-
 import { expect } from '@jest/globals';
+import consoleUtils from '../consoleUtils';
 
 // https://engineering.britebill.com/2018/10/30/end-to-end-testing-cli-apps-jest.html
 
 function runCli(params) {
   return new Promise((resolve: (value: string) => void) => {
     const proc = spawn('node', [
-      join('.', 'built', 'cli.js'),
+      join('.', 'built', 'cli', 'cli.js'),
       ...params
     ]);
   
@@ -32,24 +33,40 @@ function runCli(params) {
   });
 }
 
+function expectToFileExists(filename) {
+  let fileExistance = false;
+  try {
+    if (existsSync(filename)) {
+      fileExistance = true;
+    }
+  } catch (err) {
+    fail('SVG file doesnt exist');
+  }
+
+  expect(fileExistance).toBeTruthy();
+}
+
 describe('cli (called from console)', () => {
   it('should return ids', async () => {
     const currentCwd = cwd();
 
     const result = await runCli([
       'ids',
-      join(currentCwd, 'tests', 'cypress', 'integration')
+      join(currentCwd, 'tests', 'cypress', 'integration'),
+      '--raw'
     ]);
 
-    // TODO Extend
-    expect(result.split('\n').length).toEqual(10);
+    const parsedResult = JSON.parse(result) as string[];
+
+    expect(parsedResult.length).toEqual(10);
   });
 
   it('should return order', async () => {
     const currentCwd = cwd();
     const result = await runCli([
       'order',
-      join(currentCwd, 'tests', 'cypress', 'integration')
+      join(currentCwd, 'tests', 'cypress', 'integration'),
+      '--raw'
     ]);
 
     const json = JSON.parse(result) as string[];
@@ -64,24 +81,11 @@ describe('cli (called from console)', () => {
     });
   });  
 
-  function expectToFileExists(filename) {
-    let fileExistance = false;
-    try {
-      if (existsSync(filename)) {
-        fileExistance = true;
-      }
-    } catch (err) {
-      fail('SVG file doesnt exist');
-    }
-
-    expect(fileExistance).toBeTruthy();
-  }
-
   it('should return empty diagram with default filename', async () => {
     const currentCwd = cwd();
     const result = await runCli([
       'draw',
-      join(currentCwd, 'tests', 'cypress', 'integration')      
+      join(currentCwd, 'tests', 'cypress', 'integration')
     ]);
 
     expect(result.includes('SVG file created!')).toBeTruthy();

@@ -71,7 +71,6 @@ class ConfigReader {
   }
 
   getAllIds(cwdPath: string): string[] {
-    console.log('cwdPath', cwdPath);
     const metadata = this.readAllFilesWithMetadata(cwdPath);
 
     const ids: string[] = [];

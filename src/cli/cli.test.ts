@@ -44,7 +44,6 @@ describe('cli', () => {
       cwdPath: testCwdPath
     });
 
-    // TODO Checking console.log displaying
     expect(mockIndexFunctions.getAllIds).toHaveBeenCalledTimes(1);
     expect(results).toEqual(['1', '2']);
   });

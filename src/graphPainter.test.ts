@@ -11,6 +11,7 @@ const drawSvgMocked = mocked(drawSvg);
 
 import Graph from './graph';
 import GraphPainter from './graphPainter';
+import consoleUtils from './consoleUtils';
 import { 
   configs as basicConfigs, 
   results as basicResults, 
@@ -42,6 +43,10 @@ function compareMarkups(markupSource, markupTarget) {
 }
 
 describe('graphPainter', () => {
+  beforeEach(() => {
+    consoleUtils.logEnabled = false;
+  });
+
   it('tests generating graphviz markup (basic example)', () => {
     const myGraph = new Graph(basicConfigs);
 

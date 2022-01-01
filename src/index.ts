@@ -48,7 +48,7 @@ export default {
     const graphPainter = new GraphPainter(myGraph);
 
     graphPainter.drawSVG(fileName).then(() => {
-      consoleUtils.log('SVG file created!');
+      consoleUtils.info('SVG file created!');
     });
   },
   draw(
@@ -66,7 +66,7 @@ export default {
     const graphPainter = new GraphPainter(myGraph);
 
     graphPainter.drawSVG(fileName).then(() => {
-      consoleUtils.log('SVG file created!');
+      consoleUtils.info('SVG file created!');
     });
   },
   get(

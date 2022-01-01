@@ -53,13 +53,17 @@ class GraphPainter {
         ${ graphConnections.join(';\n') }
       }
     `;
-      console.log(input);
+
+    consoleUtils.log(input);
+
     return input;
   }
 
   public async drawSVG(fileName?: string): Promise<string> {
     const input = this.generateMarkup();
-    console.log('fileName', fileName);
+
+    consoleUtils.log('filename', fileName);
+
     return drawSvg(input, fileName);
   }
 }

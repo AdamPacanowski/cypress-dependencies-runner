@@ -2,6 +2,7 @@ import { readFileSync, existsSync, writeFileSync, unlinkSync } from 'fs';
 import { spawn } from 'child_process';
 
 import indexFunctions from '../index';
+import consoleUtils from '../consoleUtils';
 
 const _generateConfig = (argv: {
   cwdPath: string,
@@ -11,7 +12,6 @@ const _generateConfig = (argv: {
   node?: string
 }) => {
   const myGraph = indexFunctions.getGraph(argv.cwdPath);
-  console.log(myGraph.graph.serialize());
   const order = indexFunctions.getFullOrder(myGraph, argv.node, argv.type);
 
   let configJson: object;
@@ -30,7 +30,8 @@ const _generateConfig = (argv: {
   configJson['integrationFolder'] = '.';
 
   writeFileSync(argv.newConfig, JSON.stringify(configJson));
-  console.log(`Saved to ${ argv.newConfig }`);
+
+  consoleUtils.info('Saved to', argv.newConfig);
 };
 
 export const draw = (argv: {
@@ -67,12 +68,13 @@ export const generateConfig = (argv: {
 export const ids = (argv: {
   cwdPath: string
 }) => {
-  console.log(`cwdPath: ${ argv.cwdPath }`);
+  consoleUtils.log('cwdPath:', argv.cwdPath);
 
   const results = indexFunctions.getAllIds(argv.cwdPath)
     .sort((a, b) => a.localeCompare(b));
 
-  console.log(results);
+  consoleUtils.info(JSON.stringify(results));
+
   return results;
 };
 
@@ -82,7 +84,8 @@ export const order = (argv: {
   const myGraph = indexFunctions.getGraph(argv.cwdPath);
   const fullOrder = indexFunctions.getFullOrder(myGraph);
 
-  console.log(fullOrder);
+  console.info(JSON.stringify(fullOrder));
+
   return fullOrder;
 };
 
@@ -112,11 +115,11 @@ export const run = (argv: {
   ]);
 
   proc.stdout.on('data', (chunk) => {
-    console.log(chunk.toString());
+    console.info('CypressRunner run', chunk.toString());
   });
 
   proc.stderr.on('data', (chunk) => {
-    console.log(chunk.toString());
+    console.info('CypressRunner run error', chunk.toString());
   });
 };
 

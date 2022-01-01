@@ -3,6 +3,10 @@ import { expect } from '@jest/globals';
 import consoleUtils from './consoleUtils';
 
 describe('consoleUtils', () => {
+  beforeEach(() => {
+    consoleUtils.logEnabled = true;
+  });
+
   it('tests log function', () => {
     const consoleLog = jest.spyOn(console, 'log')
       .mockImplementation(() => {});
@@ -26,6 +30,6 @@ describe('consoleUtils', () => {
     expect(consoleLog).toBeCalledTimes(1);
     expect(callArgument).toContain('[');
     expect(callArgument).toContain(']');
-    expect(callArgument).toContain('Test Test2');
+    expect(callArgument).toContain('Test,Test2');
   });
 });

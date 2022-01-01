@@ -56,14 +56,19 @@ export default {
     myGraph: Graph, 
     fileName?: string
   ): void {
+    consoleUtils.logEnabled = true;
     consoleUtils.log('Drawing...');
 
     const resultsParser = new ResultsParser();
+    consoleUtils.log('#2');
     const runsResults = resultsParser.parse(runsResultsRaw);
+    consoleUtils.log('#3');
 
     myGraph.setResults(runsResults);
+    consoleUtils.log('#4');
 
     const graphPainter = new GraphPainter(myGraph);
+    consoleUtils.log('#5', fileName);
 
     graphPainter.drawSVG(fileName).then(() => {
       consoleUtils.info('SVG file created!');

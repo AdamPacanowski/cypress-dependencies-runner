@@ -124,7 +124,8 @@ describe('cli (called from console)', () => {
       'draw',
       join(currentCwd, 'tests', 'cypress', 'integration'),
       '--outputSvgFileName="mycustomname2.svg"',
-      '--resultsJson="src/jestFixtures/cli/basicResults.json"'
+      '--resultsJson="src/jestFixtures/cli/basicResults.json"',
+      '--log'
     ]);
 
     expect(result.includes('SVG file created!')).toBeTruthy();

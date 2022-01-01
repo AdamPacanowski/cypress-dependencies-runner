@@ -57,18 +57,18 @@ export default {
     fileName?: string
   ): void {
     consoleUtils.logEnabled = true;
-    consoleUtils.log('Drawing...');
+    consoleUtils.info('Drawing...');
 
     const resultsParser = new ResultsParser();
-    consoleUtils.log('#2');
+    consoleUtils.info('#2');
     const runsResults = resultsParser.parse(runsResultsRaw);
-    consoleUtils.log('#3');
+    consoleUtils.info('#3');
 
     myGraph.setResults(runsResults);
-    consoleUtils.log('#4');
+    consoleUtils.info('#4');
 
     const graphPainter = new GraphPainter(myGraph);
-    consoleUtils.log('#5', fileName);
+    consoleUtils.info('#5', fileName);
 
     graphPainter.drawSVG(fileName).then(() => {
       consoleUtils.info('SVG file created!');

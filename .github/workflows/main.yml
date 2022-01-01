@@ -28,13 +28,17 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run `npm install`
         run: npm install
+        shell: bash
         
       - name: 'Build files'
         run: npm run build
+        shell: bash
 
       # Runs Jest tests
       - name: Run Jest tests
         run: npm test
+        shell: bash
 
       - name: Run E2E tests
         run: cd scripts; node rune2etests.mjs
+        shell: bash

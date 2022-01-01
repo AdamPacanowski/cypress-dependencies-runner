@@ -127,7 +127,7 @@ describe('cli (called from console)', () => {
       '--resultsJson="src/jestFixtures/cli/basicResults.json"'
     ]);
 
-    // expect(result.includes('SVG file created!')).toBeTruthy();
+    expect(result.includes('SVG file created!')).toBeTruthy();
     expectToFileExists('mycustomname2.svg');  
 
     const svgFile = readFileSync('mycustomname2.svg').toString();

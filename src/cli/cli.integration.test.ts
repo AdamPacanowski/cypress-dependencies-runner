@@ -127,7 +127,7 @@ describe('cli (called from console)', () => {
       '--resultsJson="src/jestFixtures/cli/basicResults.json"',
       '--log'
     ]);
-
+    console.log(result);
     expect(result.includes('SVG file created!')).toBeTruthy();
     expectToFileExists('mycustomname2.svg');  
 

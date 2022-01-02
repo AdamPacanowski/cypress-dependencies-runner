@@ -16,7 +16,7 @@ import {
   configs as basicConfigs, 
   results as basicResults, 
   graphDescription as basicGraphDescription 
-} from './jestFixtures/graph/basicGraphExampleData';
+} from './jestFixtures/graph/basicGraphExampleData.ploped';
 import {
   configs as spacesConfigs,
   results as spacesResults,

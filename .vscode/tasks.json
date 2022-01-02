@@ -1,66 +1,17 @@
 {
 	"version": "2.0.0",
 	"tasks": [
-		{
-      "label": "Open terminal",
-      "command": "${command:workbench.action.terminal.new}",
+    {
+      "label": "Terminal launch",
       "type": "shell",
-      "problemMatcher": []
-		},
-    {
-      "label": "Run main terminal command",
-      "command": "${input:runMainTerminalCommand}",
-      "type": "shell",
-      "problemMatcher": []
-    },
-    {
-      "label": "Run tests terminal command",
-      "command": "${input:runTestTerminalCommand}",
-      "type": "shell",
-      "problemMatcher": []
-    },
-    {
-      "label": "Run test server terminal command",
-      "command": "${input:runTestServerTerminalCommand}",
-      "type": "shell",
-      "problemMatcher": []
-    },
-    {
-      "label": "Prepare terminals",
-      "dependsOrder": "sequence",
-      "dependsOn": [
-        "Run main terminal command",
-        "Open terminal",
-        "Run tests terminal command",
-        "Open terminal",
-        "Run test server terminal command"
-      ],
-      "problemMatcher": []
-    }
-	],
-  "inputs": [
-    {
-      "id": "runMainTerminalCommand",
-      "type": "command",
-      "command": "workbench.action.terminal.sendSequence",
-      "args": {
-        "text": "\u000D"
-      }
-    },
-    {
-      "id": "runTestTerminalCommand",
-      "type": "command",
-      "command": "workbench.action.terminal.sendSequence",
-      "args": {
-        "text": "cd tests\u000Dnpm run cypress"
-      }
-    },
-    {
-      "id": "runTestServerTerminalCommand",
-      "type": "command",
-      "command": "workbench.action.terminal.sendSequence",
-      "args": {
-        "text": "cd testServer\u000Dnpm start"
+      "command": ".\\scripts\\bashTerminals.bat",
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
       }
     }
   ]

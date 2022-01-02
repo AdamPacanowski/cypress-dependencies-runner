@@ -1,1 +1,0 @@
-wt -d "." ; split-pane -V -d "." ; split-pane -H -d "."

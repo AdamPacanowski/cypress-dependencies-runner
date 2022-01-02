@@ -1,7 +1,7 @@
 import { expect } from '@jest/globals';
 
 import Graph from './graph';
-import { configs, results } from './jestFixtures/graph/basicGraphExampleData';
+import { configs, results } from './jestFixtures/graph/basicGraphExampleData.ploped';
 
 describe('graph', () => {
   it('tests object creation (basic data)', () => {

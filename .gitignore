@@ -8,3 +8,5 @@ coverage
 *.env
 *.tgz
 newConfig.json
+*.ploped.ts
+*.ploped.js

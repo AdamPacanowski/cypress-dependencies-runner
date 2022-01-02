@@ -28,6 +28,11 @@ function runCli(params) {
     proc.stdout.on('end', () => {
       const output = Buffer.concat(chunks).toString();
   
+      if (output.toLocaleLowerCase().includes('error')) {
+        console.error(output);
+        throw new Error('Error in console output found!');
+      }
+
       resolve(output);
     });
   });

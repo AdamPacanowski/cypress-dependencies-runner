@@ -1,4 +1,5 @@
 import { fork, execSync, exec } from 'child_process';
+import { readFileSync } from 'fs';
 import { resolve } from 'path';
 import { cwd } from 'process';
 
@@ -17,11 +18,15 @@ function getPlopCommand({
 
 console.log('Preparing test fixtures...');
 
+console.log('cwd', cwd());
+
 execSync(getPlopCommand({
   generatorName: 'basicGraphExampleData',
   args: {
     cwd: cwd()
   }
 }));
+
+console.log(readFileSync('src/jestFixtures/graph/basicGraphExampleData.ploped.ts').toString());
 
 console.log('Text fixtures generated.');

@@ -95,6 +95,10 @@ class Graph {
         specAbsolutePath: config.specAbsolutePath
       });
 
+      if (!adequateResult) {
+        throw new Error(`getColors missing adequateResult ${JSON.stringify(this.results)} ${config.specAbsolutePath}}`)
+      }
+
       const text = `${ adequateResult.passes }/${ adequateResult.tests }`;
       let color: IColorsEntryColor;
 

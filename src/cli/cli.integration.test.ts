@@ -123,14 +123,13 @@ describe('cli (called from console)', () => {
     expect(gNo).toEqual(21);
   });
 
-  it.only('should return diagram when resultsJson and filename defined', async () => {
+  it('should return diagram when resultsJson and filename defined', async () => {
     const currentCwd = cwd();
     const result = await runCli([
       'draw',
       join(currentCwd, 'tests', 'cypress', 'integration'),
       '--outputSvgFileName="mycustomname2.svg"',
-      '--resultsJson="src/jestFixtures/cli/basicResults.ploped.json"',
-      '--log'
+      '--resultsJson="src/jestFixtures/cli/basicResults.ploped.json"'
     ]);
     console.log(result);
     expect(result.includes('SVG file created!')).toBeTruthy();

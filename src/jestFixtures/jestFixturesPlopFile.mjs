@@ -20,6 +20,10 @@ export default function (
             type: 'input',
             name: 'cwd',
             message: 'cwd'
+        }, {
+            type: 'input',
+            name: 'simpleReversedCwd',
+            message: 'simpleReversedCwd'
         }],
         actions: [{
             type: 'add',

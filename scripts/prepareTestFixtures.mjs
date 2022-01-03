@@ -4,6 +4,7 @@ import { resolve } from 'path';
 import { cwd } from 'process';
 
 const plopBinary = resolve('./node_modules/.bin/plop');
+const simpleReversedCwd = cwd().replace(/\\/g, '/');
 
 function getPlopCommand({
   generatorName,
@@ -28,7 +29,8 @@ execSync(getPlopCommand({
 execSync(getPlopCommand({
   generatorName: 'basicResults',
   args: {
-    cwd: cwd()
+    cwd: cwd(),
+    simpleReversedCwd,
   }
 }));
 

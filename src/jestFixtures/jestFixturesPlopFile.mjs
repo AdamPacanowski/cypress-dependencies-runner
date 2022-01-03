@@ -15,5 +15,18 @@ export default function (
             templateFile: 'graph/TEMPLATE_basicGraphExampleData.hbs'
         }]
     });
+    plop.setGenerator('basicResults', {
+        prompts: [{
+            type: 'input',
+            name: 'cwd',
+            message: 'cwd'
+        }],
+        actions: [{
+            type: 'add',
+            force: true,
+            path: 'cli/basicResults.ploped.json',
+            templateFile: 'cli/TEMPLATE_basicResults.hbs'
+        }]
+    });
 };
 

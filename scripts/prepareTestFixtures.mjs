@@ -18,8 +18,6 @@ function getPlopCommand({
 
 console.log('Preparing test fixtures...');
 
-console.log('cwd', cwd());
-
 execSync(getPlopCommand({
   generatorName: 'basicGraphExampleData',
   args: {
@@ -27,6 +25,11 @@ execSync(getPlopCommand({
   }
 }));
 
-console.log(readFileSync('src/jestFixtures/graph/basicGraphExampleData.ploped.ts').toString());
+execSync(getPlopCommand({
+  generatorName: 'basicResults',
+  args: {
+    cwd: cwd()
+  }
+}));
 
 console.log('Text fixtures generated.');

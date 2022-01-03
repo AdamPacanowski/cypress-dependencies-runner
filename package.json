@@ -21,7 +21,8 @@
     "watch:only": ".\\node_modules\\.bin\\tsc --watch",
     "watch": "npm-run-all -s prepareTestFixtures clean watch:only",
     "lint": ".\\node_modules\\.bin\\eslint . --ext .ts",
-    "lint:fix": ".\\node_modules\\.bin\\eslint . --ext .ts --fix"
+    "lint:fix": ".\\node_modules\\.bin\\eslint . --ext .ts --fix",
+    "generateDepGraph": "node scripts\\generateDependencies.mjs"
   },
   "repository": {
     "type": "git",
@@ -50,6 +51,7 @@
     "@typescript-eslint/eslint-plugin": "^5.5.0",
     "@typescript-eslint/parser": "^5.5.0",
     "cypress": "8.6.0",
+    "dependency-cruiser": "^11.2.1",
     "eslint": "^8.4.0",
     "eslint-plugin-import": "^2.25.3",
     "jest": "27.1.0",

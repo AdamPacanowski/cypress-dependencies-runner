@@ -1,5 +1,4 @@
-import { fork, execSync, exec } from 'child_process';
-import { readFileSync } from 'fs';
+import { execSync } from 'child_process';
 import { resolve } from 'path';
 import { cwd } from 'process';
 

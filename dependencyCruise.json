@@ -1,0 +1,6 @@
+{
+  "options": {
+    "includeOnly": "^src",
+    "exclude": "(^src/jestFixtures|test\\.[tj]s$)"
+  }
+}

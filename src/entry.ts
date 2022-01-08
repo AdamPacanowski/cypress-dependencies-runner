@@ -9,8 +9,8 @@ interface ICypressRunOptions {
   env?: object;
 }
 
-export default (cypress: typeof cypressTyping, env: object, silent = false) => {
-  const myGraph = CypressRunner.getGraph();
+export default (cypress: typeof cypressTyping, env: object, silent = false, cwdPath?: string) => {
+  const myGraph = CypressRunner.getGraph(cwdPath);
 
   const options: ICypressRunOptions = {
     config: {

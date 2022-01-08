@@ -11,3 +11,4 @@ newConfig.json
 *.ploped.ts
 *.ploped.js
 *.ploped.json
+tests/plopedScenarios

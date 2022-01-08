@@ -1,0 +1,22 @@
+{{json.require}}
+
+/// <reference types="cypress" />
+
+/***CypressRunner
+  {
+    "id": {{id}},
+    "require":{{json.require}}  
+  }
+***/
+
+describe({{id}}, () => {
+  {{#each json.its}}
+    cy.pushToServer({{this.id}}).then(() => {
+      cy.getFromServer().then((response) => {
+        {{#each this.bodyContains}}
+          expect(response).property('body').to.contains({{this}})
+        {{/each}}
+      });
+    });
+  {{/each}}
+});
